@@ -1,0 +1,268 @@
+
+  
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ 
+	<link rel="stylesheet" type="text/css" href="/static/css/accueil.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+ 
+	<script type = 'text/javascript' language="javascript" src = 'https://code.jquery.com/jquery-3.3.1.js'></script>
+	<script type = 'text/javascript' language="javascript" src = 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+ 
+	 
+	 
+	
+	 
+    <title>Study Manager</title>
+ 
+ 
+ 
+ 
+ <style>
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+ 
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+           /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 70vw;
+}
+ 
+ </style>
+ 
+ 
+ 
+</head>
+   
+   
+<nav class="navbar navbar-expand-lg navbar-dark"  style="font-size:20px;background-color:#113743 ; ">
+ 
+		   
+  
+ <li  class="navbar-brand" style="font-size:30px">  <center>  Dataset: {{ output.type }}  </center></li>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+  
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" >
+      <li class="nav-item  ">
+        <a class="nav-link" href="#}" style="color:#E4E3DB">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color:#E4E3DB">Tools</a>
+      </li>
+      <li class="nav-item">
+         <a  class="nav-link" href="#" target="_blank" style="color:#E4E3DB">   Search </a
+      </li>
+	 
+ </ul>
+ 
+ 
+	
+  <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#" style="color:#E4E3DB">Hi citizen!</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" style="font-size:15px;color:#E4E3DB">logout</a></li>
+	 </ul>	   
+		   
+ 
+  </div>
+</nav>
+
+
+  <body  data-spy="scroll" data-target="nav nav-tabs nav-justified">
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-12">
+			
+		 
+		 
+	<!-- TITLE-->
+<h2><center> <span class="small"> 
+{% if  output.objet_id == 1  or output.objet_id == 2    %}
+     <h2><center><span>{{ output.objet }}.{{ output.domain }} : {{ output.title }} </span></center></h2>
+{% endif  %}
+ 
+
+</h2>  
+   
+<!-- Second Menu-->
+  <div style="text-align: center;">
+
+  
+  
+  <div class="wrapper"  style="background-color: white;">
+  
+  
+ {% if  output.objet_id == 1  or output.objet_id == 2    %}
+  <a href="#" style="color: white ;text-decoration:none;">
+     <button type="button" class="btn btn-danger">Dataset</button>
+  </a>
+   
+ {% endif  %} 
+  
+ {% if  output.objet_id == 1  or output.objet_id == 2    %}
+   <a href="#"  style="color: white ;text-decoration:none;">
+      <button type="button" class="btn btn-danger">Specifications</button>
+   </a> 
+  
+ {% endif %}
+
+ {% ifequal output.objet|stringformat:"s" "SDTM" %}
+ <a href="#"  style="color: white ;text-decoration:none;">
+    <button type="button" class="btn btn-danger">  CRF</button> 
+</a>
+ {% endifequal %} 
+ 
+ 
+      <a href="#"  style="color: white ;text-decoration:none;">
+	     <button type="button" class="btn btn-danger">Program</button> 
+      </a>
+	  <a href="#"  style="color: white ;text-decoration:none;">
+	     <button type="button" class="btn btn-danger">Team </button>
+	  </a>
+	  <a href="#"  style="color: white ;text-decoration:none;">
+	     <button type="button" class="btn btn-danger">Comment</button>
+	  </a> 
+      <a href="#"  style="color: white ;text-decoration:none;" onclick="self.close()" >
+	     <button type="button" class="btn btn-danger">Close</button>
+	  </a> 
+	   
+  
+   </div> 	 
+
+ </div> 	 
+		 
+
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+	
+
+</body>
+        
+
+<!--Footer-->
+<footer class="text-white-50  " style="background-color:#113743;" >
+
+    <!--Footer Links-->
+    <div class="container" style="background-color:#113743" >
+
+        <!--Grid row-->
+        <div class="row pt-5 mb-3 text-center d-flex justify-content-center" style="background-color:#113743">
+
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" style="color:#E4E3DB">About us</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" style="color:#E4E3DB">Products</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+
+   
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" style="color:#E4E3DB">Help</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" style="color:#E4E3DB">Contact</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <hr class="rgba-white-light" style="margin: 0 15%;">
+
+       
+
+        <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+        
+
+    </div>
+    <!--/Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center" style="background-color:#113743">
+        © 2018 Copyright:
+        <a href="https://mdbootstrap.com/material-design-for-bootstrap/" style="color:#E4E3DB"> Saeba Prod.</a>
+    </div>
+    <!--/Copyright-->
+
+</footer>
+<!--/Footer-->
+                    

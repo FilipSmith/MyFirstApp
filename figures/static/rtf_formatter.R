@@ -1,0 +1,43 @@
+library(rtf)
+
+#' Add foot note to the document
+#' Example : addFootNote(rtf, "There is a footnote", "This is the right footnote", 'r')
+#'
+#' @param rtf rtf object
+#' @param text text to add foot note
+#' @param footNoteText foot note text
+#' @param alignment 
+addFootNote <- function(rtf, text, footNoteText, alignment='l'){
+    addText(rtf, paste0(text, ' \\chftn {\\footnote \\pard\\q', alignment, '{\\chftn}', footNoteText, ' }'))
+}
+
+
+#' Align a given text
+#' Example : addAlignedText(rtf, 'Centered text', 'c')
+#'
+#' @param rtf rtf object
+#' @param text text to add foot note
+#' @param alignment alignemnt
+addAlignedText <- function(rtf, text, alignment='l'){
+  addText(rtf, paste0('\\pard\\q', alignment, ' ', text, '\\par'))
+  addText(rtf, '\\pard')
+}
+
+#' Add footer to the document
+#' Example : addFooter(rtf, 'Centered footer', 'c')
+#'
+#' @param rtf rtf object
+#' @param text text to add foot note
+#' @param alignment alignemnt
+addFooter <- function(rtf, text, alignment='l'){
+  addText(rtf, paste0('{\\footer \\pard \\q', alignment, ' ', text, '\\par }'))
+}
+
+#' Get a text with the alignment command (To be used with addHeader)
+#' Example : addFooter(rtf, 'Centered footer', 'c')
+#'
+#' @param text text to add foot note
+#' @param alignment alignemnt
+getAlignedText <- function(text, alignment='l') {
+  return( paste0('\\q', alignment, ' ', text))
+}

@@ -1,0 +1,12 @@
+from sas7bdat import SAS7BDAT
+
+foo = SAS7BDAT('study/static/ABCDE1234/ADAM/ADCM.sas7bdat')
+a=foo.header
+aa=str(a)
+aa.find("Num")
+
+c=aa[540:].replace("YYMMDD","  ").split("\n")
+
+
+matching = [s for s in c if "STUDYID" in s]
+matching[0].strip().replace("  ","$")[::-1].split("$")[0][::-1]

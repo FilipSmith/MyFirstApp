@@ -1,0 +1,48 @@
+1,DM,Table,14.1-1.1,Subject disposition,All subjects,t141_1_01,p_DemoSum2,Draft
+2,DM,Table,14.1-2.1,Number (percent) of subjects in the analysis sets,All subjects,t141_2_01,p_demosum3,Draft
+3,DM,Table,14.1-3.1,Summary of demographic information ,Safety analysis set,t141_3_01,p_demosum1,Draft
+4,PK,Figure,14.2-1.1,Arithmetic mean (SD) concentration-time plot per treatment (overlaying) and analyte (separately),Pharmacokinetic analysis set,f142_1_01,p_PKFig1,Draft
+5,PK,Figure,14.2-1.2,Arithmetic mean (SD) concentration-time plot per treatment (overlaying) and analyte (separately),Pharmacokinetic analysis set,f142_1_02,p_pkfigtest3,Draft
+6,PK,Figure,14.2-1.1,Arithmetic mean (SD) serum total xxxxx concentration-time plot per treatment (overlaying),Pharmacokinetic analysis set,f142_1_01,p_pkfigtest3,Draft
+7,PD,Figure,14.2-1.3,Scatter plot of LDL-C change from baseline vs PCSK9 change from baseline ,Pharmacodynamic analysis set,f142_1_03,p_pkfigtest3,IA3 - Draft 
+8,PK,Figure,14.2-1.2,Overlaying individual concentration-time profiles per treatment and analyte,Pharmacokinetic analysis set,f142_1_02,p_pkfig8,Draft
+9,PK,Table,14.2-1.1,Summary statistics for PK parameters of primary interest per treatment and analyte,Pharmacokinetic analysis set,t142_1_01,p_pksum1,Draft
+10,PK,Table,14.2-1.2,Summary statistics for PK parameters of secondary interest per treatment and analyte,Pharmacokinetic analysis set,t142_1_02,p_pksum1,Draft
+11,PK,Table,14.2-1.7,Summary statistics of concentrations per treatment and analyte,Pharmacokinetic analysis set,t142_1_07,p_pksum2,Draft
+12,LB,Table,14.3-1.1,Summary of blood chemistry: SOD POT CHLOR BIC CALC PHOS,Safety analysis set,t143_1_01,p_labsum11,Draft
+13,LB,Table,14.3-1.2,Summary of blood chemistry: CREA UREA UACID ALB TPROT GLUC,Safety analysis set,t143_1_02,p_labsum11,Draft
+14,LB,Table,14.3-1.3,Summary of blood chemistry: TBIL DBIL IBIL SGOT SGPT GGT ALKPHS,Safety analysis set,t143_1_03,p_labsum11,Draft
+15,LB,Table,14.3-1.4,Summary of blood chemistry: LDH LIPASE AMY CK TRIGLY TCHOL,Safety analysis set,t143_1_04,p_labsum11,Draft
+16,LB,Table,14.3-2.1,Summary of hematology: EOS LYM BAS MON ,Safety analysis set,t143_2_01,p_labsum11,Draft
+17,LB,Table,14.3-2.2,Summary of hematology: ABSNEU ABSEOS ABSLYM ABSBAS ABSMON ,Safety analysis set,t143_2_02,p_labsum11,Draft
+18,LB,Table,14.3-2.3,Summary of hematology: HGB HCT RBC WBC DPLCNT PT PTT,Safety analysis set,t143_2_03,p_labsum11,Draft
+19,VS,Table,14.3-3.1,Summary of vital signs,Safety analysis set,t143_3_01,p_vssum3,Draft
+20,EG,Table,14.3-4.1,Summary of ECG intervals ,Safety analysis set,t143_4_01,p_ecgsum1,Draft
+21,AE,Table,14.3.1-1.1,Subjects with adverse events by body system and preferred term,Safety analysis set,t1431_1_01,p_aesum1 ,Draft
+22,AE,Table,14.3.1-1.2,"Subjects with adverse events by body system, preferred term and maximum severity",Safety analysis set,t1431_1_02,p_aesum2,Draft
+23,AE,Listing,14.3.2-1.1,Subjects with serious adverse events by body system and preferred term and treatment group,All subjects,l1432_1_01,p_aelist1,Draft
+24,LB,Listing,14.3.4-1.1,Clinical laboratory values outside normal range by subject,All subjects,l1434_1_01,p_lablist3,Draft
+25,DE,Listing,16.1.7-1.1,Subject randomization and treatment assignment,All subjects,l1617_1_01,rep_list_missing,Draft
+26,DM,Listing,16.2.1-1.1,End of study status,All subjects,l1621_1_01,rep_list_missing,Draft
+27,DM,Listing,16.2.2-1.1,Protocol deviations,All subjects,l1622_1_01,rep_list_missing,Draft
+28,DM,Listing,16.2.3-1.1,Subjects excluded from analysis sets based on RAP criteria (non protocol deviations),All subjects,l1623_1_01,rep_list_missing,Draft
+29,DM,Listing,16.2.4-1.1.1,Demographic information,All subjects,l1624_1_1_01,rep_list_missing,Draft
+30,SV,Listing,16.2.4-1.1.2,Visit dates,All subjects,l1624_1_1_02,rep_list_missing,Draft
+31,MH,Listing,16.2.4-1.2,Relevant medical history/current medical conditions ,All subjects,l1624_1_02,rep_list_missing,Draft
+32,PG,Listing,16.2.4-1.3,Pregnancy test results,All subjects,l1624_1_03,rep_list_missing,Draft
+33,ML,Listing,16.2.4-1.5,Meal records ,All subjects,l1624_1_05,rep_list_missing,Draft
+34,DA,Listing,16.2.5-1.1,Dosage and dates of administration,All subjects,l1625_1_01,rep_list_missing,Draft
+35,CM,Listing,16.2.5-1.2,Prior and concomitant medications,All subjects,l1625_1_02,rep_list_missing,Draft
+36,PK,Listing,16.2.5-2.1,Listing of concentrations per treatment and analyte,All subjects,l1625_2_01,p_pklist1,Draft
+37,PK,Listing,16.2.5-2.2,Listing of individual PK parameters of primary interest per treatment and analyte,All subjects,l1625_2_02,p_pklist2,Draft
+38,PK,Listing,16.2.5-2.3,Listing of individual PK parameters of secondary interest per treatment and analyte ,All subjects,l1625_2_03,p_pklist2,Draft
+39,PK,Figure,16.2.5-2.1,Individual concentration-time profiles per treatment (overlaying) and analyte (separate),All subjects,f1625_2_01,p_pkfig2,Draft
+40,AE,Listing,16.2.7-1.1,All adverse events ,All subjects,l1627_1_01,p_aelist1,Draft
+41,LB,Listing,16.2.8-1.1,Laboratory parameters and codes ,All subjects,l1628_1_01,,
+42,LB,Listing,16.2.8-2.1,Subject laboratory profile - Biochemistry ,All subjects,l1628_2_01,p_lablist2,Draft
+43,LB,Listing,16.2.8-2.2,Subject laboratory profile - Hematology,All subjects,l1628_2_02,p_lablist2,Draft
+44,LB,Listing,16.2.8-2.3,Subject laboratory profile - Urinalysis ,All subjects,l1628_2_03,p_lablist2,Draft
+45,VS,Listing,16.2.9-1.1,Vital signs,All subjects,l1629_1_01,rep_list_missing,Draft
+46,EG,Listing,16.2.9-1.2.1,ECG interpretation ,All subjects,l1629_1_2_01,rep_list_missing,Draft
+47,EG,Listing,16.2.9-1.2.2,ECG Intervals,All subjects,l1629_1_2_02,p_ecglist2,Draft
+48,CO,Listing,16.2.9-1.3,Comments,All subjects,l1629_1_03,rep_list_missing,Draft

@@ -1,0 +1,149 @@
+##################################################
+##### Study{{study}}                         #####
+##### Name={{username}}                      #####
+##################################################
+
+
+####################Import SAS data###############
+library(sas7bdat)
+dataset<-"{{data}}"    ####dataset=AE.sas7bdat
+study<-"{{study}}"    ####dataset=AE.sas7bdat
+title<-"{{title}}"    ####dataset=AE.sas7bdat
+footnote<-"{{footnote}}"    ####dataset=AE.sas7bdat
+population<-"{{population}}"    ####dataset=AE.sas7bdat
+type<-"{{type}}" 
+number<-"{{number}}" 
+
+path<-"C:/Users/Felipe/Documents/django"
+filesas<-paste(path,"/study/static/",study,type,dataset,".sas7bdat",sep="")
+read.sas7bdat(filesas)
+data<-read.sas7bdat(filesas)
+ 
+##################################################
+
+
+###############Apply filter#######################
+##if (exists("{{filter}}"))
+##data2<-subset(data, {{filter}})
+## }
+data2<-data
+##################################################
+ 
+
+
+
+
+ 
+###############Start Coding .....#######################
+...................
+....................
+....................
+##################################################
+ 
+ 
+ 
+
+
+
+###############create RTF report###############
+directory<-"/study/static"
+source(file.path(directory, paste("rtf_formatter.R", sep="")))
+
+library(rtf)
+
+
+directory<-paste(directory,study,"tfls",sep="/")) 
+id<-number
+
+
+
+
+table<-file.path(directory, paste(id, ".rtf", sep=""))
+rtf<-RTF(table,width=11,height=8.5,font.size=10,omi=c(1,1,1,1))
+
+
+title_=scan(text = title, what = 'character', sep = '|')
+TL<-""
+for (i in 1:length(title_)){
+
+    
+   if (i==1) {
+   TL[i]<-getAlignedText(title_[i], 'l') }
+   else {
+   TL[i]<-getAlignedText(title_[i], 'c') }
+
+
+ ###  TITLE2<-getAlignedText("Table 14.1-2.1", 'c')
+ ###  TITLE3<-getAlignedText("Number (percent) of subjects in the analysis sets", 'c')
+ ###  TITLE4<-getAlignedText("All subjects", 'c')
+
+}
+
+
+
+footnote_=scan(text = footnote, what = 'character', sep = '|')
+FT<-""
+for (i in 1:length(footnote_)){
+    
+   if (i==1) {
+   FT[i]<-getAlignedText(footnote_[i], 'l') }
+   else {
+   FT[i]<-getAlignedText(footnote_[i], 'c') }
+
+ ### FOOTNOTE1<-"Treatment: 150 mg AAA-XXXYYY"
+ ### FOOTNOTE2<-"Safety analysis set: Subjects that received study drug"
+ ### FOOTNOTE3<-"PK analysis set: Subjects with evaluable PK parameter data." 
+ ### FOOTNOTE4<-"Program: C:/Users /Desktop/report (template)/pgm_saf/p_demosum3.r"  
+
+
+}
+
+
+
+
+
+
+
+
+addFootNote <- function(rtf, text, footNoteText, alignment='l'){
+    addText(rtf, paste0(text, '  {\\footnote \\pard\\q', alignment, ' ', footNoteText, ' }'))
+}
+
+addAlignedText <- function(rtf, text, alignment='l'){
+  addText(rtf, paste0('\\pard\\q', alignment, ' ', text, '\\par'))
+ 
+}
+
+rtf<-RTF(table,width=11,height=8.5,font.size=12)
+ 
+ 
+ for ( i in 1:10) { 
+ 
+ k1=(i-1)*7+1
+ k2=(i)*7
+ 
+
+###Add title
+for (i in 1:length(title_)){
+ addParagraph(rtf,   TL[i])
+}
+addNewLine(rtf, n=2)
+
+###add results
+addTable(rtf,as.data.frame(tfinal[2:5,]),font.size=10,space.before=0.1,row.names=TRUE,NA.string="-",col.widths=c(1.5,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8),col.justify="C", header.col.justify="C")
+
+###add footnote
+addNewLine(rtf, n=4)
+for (i in 1:length(footnote__)){
+addFootNote(rtf, " ", FT[i])
+}
+
+
+###add pagebreak
+addPageBreak(rtf, width=11, height=8.5, omi=c(1, 1, 1, 1) )
+                                                                                                                        
+}
+
+done(rtf)
+
+/*=================End of Program==============*/

@@ -1,0 +1,173 @@
+ {% extends 'study/baseout.html' %}
+ {% load static %}		
+ {% block content %}
+                                  
+ <style>
+p.a {
+    white-space: nowrap;
+}
+
+p.b {
+    white-space: normal;
+}
+
+p.c {
+    white-space: pre;
+}
+
+
+
+.fixed_header{
+    width: 1000px;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 800px;
+}
+
+.fixed_header thead   tr{
+   display: block; 
+    
+  } 
+ 
+
+ .fixed_header tbody th tr  {
+   display: block;
+    
+}
+
+.fixed_header thead {
+  background: orange;
+  color:#fff;
+  font-size:14x;
+   
+}
+
+.fixed_header tbody {
+  background: lightgrey;
+  font-size:10px;
+}
+
+
+
+.fixed_header th, .fixed_header td {
+  padding: 5px;
+  text-align: left;
+  max-width:100px;
+  min-width:100px;
+   
+ 
+ 
+
+div.dataTables_wrapper {
+        width: 800px; 
+        margin: 0 auto;
+    }
+ 
+}
+
+
+ 
+</style>   
+   	                                   <!----------------------------------------------------------------------------------------> 
+                                                                    <!-- Start OF Outputs --> 
+  							   
+ 	
+									   
+{% if  output.objet_id == 1  or output.objet_id == 2    %}								   
+
+
+     {% if  output.domain == "ADAE" or  output.domain == "AE"   or output.domain == "ADSL"   or  output.domain == "ADLB"  or   output.domain == "ADVS"  or   output.domain == "ADEG"  %}
+
+      Visualize  {{output.title}} . 
+      <ul>	
+        {% for graff in graph_list  %} 
+        <li><a href="{% url 'data_visu' study_id=output.study_id id=output.id graff=graff %}" target="_blank"> {{graff}} </a></li>
+        {% empty %}
+        {% endfor %}
+      </ul>  
+     {% endif %}
+
+ 
+    {% if not data_exist %}
+	   <li class="text-left">Dataset not yet created</a></li>
+	{% else %}
+       <li class="text-left"><a href="\static\{{output.study}}\{{output.objet}}\{{output.outputfile}}.sas7bdat">Open with SAS</a></li>
+	 
+	  <div >
+        {{ viewOutput }}
+	  </div>
+	  
+	  
+	  
+	  
+	  
+<script>
+
+ 
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollY": 500,
+        "scrollX": true,
+	 
+		"lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+    } );
+} );
+
+
+
+
+
+
+</script>
+ 
+
+
+	  
+ 
+	  
+	  
+ 
+	{% endif %}
+	
+	
+ 	
+  {% else %}
+ 
+	<br>
+	<div  class="text-center">
+       <p style="font-size:25px"><a href="file:///C:\Users\Felipe\Documents\django\study\static\{{output.study}}\tfls\{{output.outputfile}}.rtf" target="_blank"> Click here to open file </a></p>
+       <p style="font-size:25px;  " >Preview</a></li>
+	</div>
+	<p></p>
+	<div  style="border-style: solid;">
+
+
+<iframe src="\static\{{output.study}}\tfls\{{output.outputfile}}.pdf" frameborder="0" width="100%" height="100%" style="border: none;">
+This browser does not support PDFs. Please look at the complete eCRF document : 
+<a href="\static\{{output.study}}\document\blankcrf.pdf">Download PDF</a>
+</iframe>
+
+
+       
+	</div>
+  {% endif %}
+	
+	<br>
+
+
+ </div>
+ 
+   	                                   <!----------------------------------------------------------------------------------------> 
+                                                                    <!-- END OF Outputs --> 
+                                       <!----------------------------------------------------------------------------------------> 
+								
+
+ 
+ 
+ 
+{% endblock %} 

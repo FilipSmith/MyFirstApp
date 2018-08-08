@@ -42,7 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+	'bootstrap4',
+	'widget_tweaks',
+	'numpy',
+	'pandas',
     'figures',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +67,7 @@ ROOT_URLCONF = 'datavizu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,10 +75,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 
             ],
-        },
+
+       },
     },
 ]
+
+
+
+
 
 WSGI_APPLICATION = 'datavizu.wsgi.application'
 
@@ -125,6 +137,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+#Get path to project
+PROJECT_DIR = os.path.dirname(__file__)
+
 
 if os.environ.get('ENV') == 'PRODUCTION':
 

@@ -1,0 +1,21 @@
+//Load local build if in local environment.
+if (window.origin !== 'https://rhoinc.github.io') {
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '/static/JS/demoPlot.js';
+    head.appendChild(script);
+}
+
+d3.csv( 
+    '/static/ABCDE1234/adam/ADSL.csv',
+    function(error,data) {
+        if (error)
+            console.log(error);
+		 
+        var instance = webCharts.createChart('#container', settings, controls);
+        instance.init(data);
+});
+
+
+ 

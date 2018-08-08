@@ -1,0 +1,55 @@
+dm 'log; clear; lst; clear;';
+*******************************************************************************;
+* PROGRAM     : _STUDY_\_OBJET_\Program\_DOMAIN_.sas
+* SOFTW       : SAS v9.4  (or R or Ptyhon ?)
+* DATE        : _TODAY_ (mm/dd/yyyy) 
+* PROGRAMMER  : _USER_ (user name)
+* PURPOSE     : Programming  of the _OUTPUT_ _DOMAIN_   
+*
+* INPUT       : 
+* OUTPUT      : _OUTPUT.TITLE_
+*
+* MACROS      : ???
+*
+*******************************************************************************;
+* Modifications History:
+*------------------------------------------------------------------------------;
+* Modif. #01  : OUTPUT.PROGRAMMER
+* Programmer  :
+* Date        :
+* Purpose     :
+ *------------------------------------------------------------------------------;
+
+
+%*--- global settings;
+%inc "_STUDY_\macros\setup.sas";
+
+
+%let DOMAIN=AE;
+%let varlist= _VAR _FROM_SPEC_ ;
+
+/*STUDYID DOMAIN USUBJID AESEQ AESPID AETERM AEMODIFY AELLT AELLTCD AEDECOD AEPTCD AEHLT AEHLTCD
+AEHLGT AEHLGTCD AEBODSYS AEBDSYCD AESOC AESOCCD AESEV AESER AEACN AEREL AEOUT TAETORD EPOCH AESTDTC AEENDTC AESTDY AEENDY AEDUR AEENRF*/
+ 
+
+
+/* Check again with QAE program for deeper automation....... */
+/**Get log and LSt ****/ 
+ 
+
+  
+*==========================================;
+* Get EPOCH
+*==========================================;
+
+data &outlib.&Domain (label=&domain.); 
+   set final ; 
+   keep &VARLIST. ; 
+run; 
+
+
+
+
+
+
+%*--- end of program -----------------------------------------------------------;
