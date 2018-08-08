@@ -1,4 +1,0 @@
-,STUDYID,DOMAIN,USUBJID,MHSEQ,MHSPID,MHTERM,MHLLT,MHLLTCD,MHDECOD,MHHLT,MHHLGT,MHCAT,MHBODSYS,MHSTDTC,MHENDTC,MHENRF
-0,ABCD1234,MH,ABCD1234-1114-002,1.0,1,EGG ALLERGY,Egg allergy,10014315.0,Food allergy,"Allergies to foods, food additives, drugs and other chemicals",Allergic conditions,NON-EPILEPSY MEDICAL HISTORY,Immune system disorders,,,ONGOING
-1,ABCD1234,MH,ABCD1234-1114-003,1.0,1,MILD ASTHMA,,,Asthma,Bronchospasm and obstruction,Bronchial disorders (excl neoplasms),NON-EPILEPSY MEDICAL HISTORY,"Respiratory, thoracic and mediastinal disorders",1998,,ONGOING
-2,ABCD1234,MH,ABCD1234-1242-005,1.0,1,AUTISM,,,Autism spectrum disorder,Pervasive developmental disorders NEC,Developmental disorders NEC,NON-EPILEPSY MEDICAL HISTORY,Psychiatric disorders,1990,,ONGOING

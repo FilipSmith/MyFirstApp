@@ -1,7 +1,0 @@
-,STUDYID,DOMAIN,ETCD,ELEMENT,TESTRL,TEENRL,TEDUR,USUBJID
-0,ABCD1234,TE,SCRN,Screening,Informed consent,Screening assessments are complete,P1D,
-1,ABCD1234,TE,BLD,Blinded,First dose of study drug,27 days after start of Element,P27D,
-2,ABCD1234,TE,TRTAOLE,GWP42003 OLE,First dose of OLE study drug after Visit 4 Day 27,1 year after start of Element,P1Y,
-3,ABCD1234,TE,TAPER,Taper,Study VISIT 5 End of Taper,10 days After Start of End of Taper,P10D,
-4,ABCD1234,TE,TAPEROLE,Taper OLE,Study VISIT 12 OLE,10 days After Start of OLE End of Taper,P10D,
-5,ABCD1234,TE,FU,Follow-up,Study Visit 6 Day 64 or Study Visit 13 OLE 28 day FU,28 Days after End of Taper,P28D,

@@ -1,9 +1,0 @@
-1,DS,Table,12.1,"Subject Disposition, Visit Attendance, Protocol Violations ",All subjects,T-DISP1,T-DISP1,Draft
-5,DM,Table,14.2-1.2,Summary of Demographics ,Safety Population,T-DM,T-DM,Draft
-13,AE,Table,11.1,Treatment-Emergent AEs ,Safety Population,T-AE,T-AE,Draft
-16,AE,Table,11.3,Treatment-Emergent AEs by Maximum Severity ,Safety analysis set,T-AESEV,T-AESEV,Draft
-17,AE,Table,14.3-2.2,Serious and Other Significant Adverse Events,Safety analysis set,T-SAE,T-SAE,Draft
-23,LB,Table,13.1,Biochemistry,Safety analysis set,T-CHEMVAL,T-CHEMVAL,Draft
-26,LB,Table,13.2,Biochemistry - Shift from Baseline Based on Toxicity Limits ,Safety analysis set,T-CHEMTOX,T-CHEMTOX,Draft
-34,VS,Table,14.1,Vital Signs,Safety analysis set,T-VS,T-VS,Draft
-35,EG,Table,16.2.5-1.2,ECG - Change from Baseline by Visit,Safety analysis set,T-ECGCHG,T-ECGCHG,Draft
