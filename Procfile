@@ -1,0 +1,1 @@
+web: gunicorn datavizu.wsgi --log-file -
