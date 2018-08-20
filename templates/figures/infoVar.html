@@ -1,0 +1,66 @@
+ {% extends 'figures/basevisu.html' %}
+ {% load static %}		
+ {% block content %}
+
+ <style>
+ .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr  ;
+  grid-column-gap: 10px;
+}
+</style>
+
+<script>
+    var dataset = "{{document.domain}}";
+	var sdtmvar = "{{ var }}";
+	var sdtmvar2 ="[{{ var }}]"
+</script>
+
+<br>
+     <h2><center>Details of  {{ domain }}.{{ var }}   &nbsp; 
+   	             <span>  <input type="button" class="btn btn-primary"  value="Close this window" onclick="self.close()"> </a></span>
+		 </center>
+     </h2> 
+ 
+<br>
+
+ 
+   
+ 
+ <div class="wrapper">  
+ 
+    <!-- Summary statistics -->
+    <div class="table-responsive"  style="  display:inline-block;border-style:solid" >
+	<h4 align="center" >Summary</h4>
+    {{ uniq_val  |safe}}
+	   <br>
+   </div>
+     <!-- Data visualization --> 
+   <div id="contain1" class="table-responsive"  style="  display: inline-block;border-style:solid;content:center;  ">         
+   </div>
+  </div>  
+<br>
+
+
+   <div class="wrapper">   
+   <!-- Summary statistics -->
+  <div class="table-responsive"  style="  display:inline-block;border-style:solid;  " >
+    <p><strong>CDISC compliant::</strong></p>
+   	   <p>{{var}} is CDISC Compliant <br>  
+       
+	
+	  
+   </div>
+     <!-- Data visualization --> 
+   
+
+ </div>
+
+ <br>
+  
+ {% endblock %}
+ 
+ 
+ 
+ 
+ 

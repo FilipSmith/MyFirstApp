@@ -22,7 +22,7 @@ if (window.origin !== 'https://rhoinc.github.io') {
 }
 
 d3.csv(
-    "/static/"+study+"/"+objet+"/"+dataset+".csv",
+    "/static/tmpdata/"+domain+".csv",
     function(error,data) {
         if (error)
             console.log(error);

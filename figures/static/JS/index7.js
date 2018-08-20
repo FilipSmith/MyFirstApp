@@ -8,7 +8,7 @@ if (window.origin !== 'https://rhoinc.github.io') {
 }
 
 d3.csv( 
-    '/static/ABCDE1234/adam/ADSL.csv',
+    "/static/tmpdata/"+domain+".csv",
     function(error,data) {
         if (error)
             console.log(error);

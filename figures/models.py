@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -5,7 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
-
+import os
 
 class Study(models.Model):
     nom = models.CharField(max_length=30)
@@ -130,7 +131,7 @@ class Output(models.Model):
         nous permettra de reconnaître facilement les différents objets que 
         nous traiterons plus tard dans l'administration
         """
-        return self.title
+        return   '%s %s' % (self.domain, self.title)
 		
  
 
@@ -241,3 +242,47 @@ class Description(models.Model):
         
         return   self.variable 
  	
+	
+
+from django import forms
+
+ 
+##File uploader
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+  
+
+    ADAE = 'ADAE'
+    ADSL = 'ADSL'
+    ADVS = 'ADVS'
+    ADLB = 'ADLB'
+    ADEG = 'ADEG'
+    ADPC = 'ADPC'
+    ADPP = 'ADPP'
+	
+    DOMAIN_CHOICES = (
+        (ADAE, 'ADAE'),
+        (ADSL, 'ADSL'),
+        (ADVS, 'ADVS'),
+        (ADLB, 'ADLB'),
+        (ADEG, 'ADEG'),
+        (ADPC, 'ADPC'),
+        (ADPP, 'ADPP'),
+    )
+	
+    domain = models.CharField(
+        max_length=20,
+        choices=DOMAIN_CHOICES,
+        default=ADSL,
+    ) 
+	
+    def __str__(self):
+        return  '%s %s' % (self.id,  self.document.name)      	
+		
+    
+		
+		
+		
+		

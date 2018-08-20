@@ -1,0 +1,122 @@
+ {% extends 'study/base_accueil.html' %}
+ {% load static %}		
+ {% block content %}
+
+ <style>
+ .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr  ;
+  grid-column-gap: 10px;
+}
+</style>
+
+<script>
+    var dataset = "{{output.domain}}";
+    var study = "{{output.study}}";	
+    var objet = "{{output.objet}}";
+	var sdtmvar = "{{ var }}";
+	var sdtmvar2 ="[{{ var }}]"
+</script>
+
+<br>
+     <h2><center>Details of  {{ output.domain }}.{{ var }}   &nbsp; 
+   	             <span>  <input type="button" class="btn btn-primary"  value="Close this window" onclick="self.close()"> </a></span>
+		 </center>
+     </h2> 
+ 
+<br>
+
+ 
+     <!--Specification of the selected variable-->
+     <table class="table   table-striped">
+          <thead class="outputlist" >
+         <tr>
+            <th scope="col">Variable</th>
+			<th scope="col">Label</th>
+			<th scope="col">Data type</th>		
+			<th scope="col">Length</th>
+			<th scope="col">Significant digit</th>
+			<th scope="col">Format</th>
+			<th scope="col">Origin</th>
+			<th scope="col">Pages</th>
+			<th scope="col">Method</th>		
+			<th scope="col">Predecessor</th>
+			<th scope="col">Role</th>
+		
+         </tr>
+       </thead>
+	   <tbody>
+	
+	     <tr>
+            <th scope="col" id="{{ specs.variable }}" >{{ specs.variable }}</th>
+            <th scope="col " width="40%" >{{ specs.label}}</th>
+            <th scope="col " width="40%" >{{ specs.data_type }}</th>
+            <th scope="col">{{ specs.length  }}</th>
+            <th scope="col">{{ specs.significant_digit }}</th>
+            <th scope="col">{{ specs.format}}</th>
+            <th scope="col">{{ specs.origin }}</th>
+            <th scope="col ">{{ specs.pages}}</th>
+            <th scope="col ">{{ specs.method}}</th>
+            <th scope="col">{{ specs.predecessor}}</th>
+            <th scope="col">{{ specs.role }}</th>		
+         </tr>	
+     	
+</tbody>
+</table>
+ 
+ <!-- End of specificqtion -->
+ 
+ 
+ 
+ 
+ <div class="wrapper">  
+ 
+    <!-- Summary statistics -->
+    <div class="table-responsive"  style="  display:inline-block;border-style:solid" >
+	<h4 align="center" >Summary</h4>
+    {{ uniq_val  |safe}}
+	   <br>
+   </div>
+     <!-- Data visualization --> 
+   <div id="contain1" class="table-responsive"  style="  display: inline-block;border-style:solid;content:center;  ">    
+               
+   </div>
+  </div>  
+<br>
+
+
+   <div class="wrapper">   
+   <!-- Summary statistics -->
+  <div class="table-responsive"  style="  display:inline-block;border-style:solid;  " >
+    <h4 align="center" >Specification</h4>
+	
+	{% if specs %}
+    <p><strong>Description:</strong></p>
+	   {% for desci in desc  %}
+   	   <p>{{var}}: <br> {{desci.description }}</p>
+       {% empty %}
+	   <p>  No derivation required</p>
+       {% endfor %}
+	<p><strong>Code List:</strong></p>
+       {% for code in codel  %}
+	   <p>{{code.term}}</p>
+	       {% empty %}
+	       {% endfor %}
+	  {% else %}	
+<p>No Specification available</p>
+      {% endif %}
+	  
+   </div>
+     <!-- Data visualization --> 
+   
+
+ </div>
+
+ <br>
+  
+ {% endblock %}
+ 
+ 
+ 
+ 
+ 

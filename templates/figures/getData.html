@@ -1,0 +1,50 @@
+ {% extends 'figures/baseout.html' %}
+ {% load static %}		
+ {% block content %}
+
+
+ <div class="tab-pane" id="Programer" role="tabpanel">
+  <p></p>
+ <h2><center>{{document.domain}} dataset</center></h2>
+ <p></p>
+  
+    {% if  dataset  %}
+  
+         {% if  graph_list  %}
+         Choose your data vizualisation .
+         (to get the vizualisation , your dataset variable  names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)) 	  
+         <ul>	
+           {% for graff in graph_list  %} 
+           <li><a href="{% url 'data_visu' document.domain graff %}" target="_blank"> {{graff}} </a></li>
+           {% empty %}
+           {% endfor %}
+         </ul>  
+        {% endif %} 
+  
+     <span>  <input type="button" class="btn btn-primary"  value="Close this window" onclick="self.close()"> </a></span>
+     <p></p>
+     {{ dataset |safe}}
+   {% else  %} 
+   <strong>This format is not recgnized.</strong>
+   
+   {% endif %} 
+   
+
+ </div>
+ 
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollY": 500,
+        "scrollX": true,
+	 
+		"lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
+    } );
+} );
+
+ 
+</script> 
+
+
+{% endblock %}

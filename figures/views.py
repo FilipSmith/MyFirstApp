@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Il faut ajouter l'import get_object_or_404, attention !
 from django.shortcuts import render, get_object_or_404, redirect
-from figures.models import Study, Output, Objet, Specs, UserProfile, Comment, ListCode, Description
+from figures.models import Study, Output, Objet, Specs, UserProfile, Comment, ListCode, Description,Document
 from tablib import Dataset
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
@@ -19,8 +19,10 @@ from django_pandas.io import read_frame
 from django.db.models import Q
  
 ##from figures.filters import OutputFilter     #for search bar
-
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
  
+from figures.forms import DocumentForm, UploadFileForm
 """import le formulaire de form.py"""
 import datetime
 import numpy as np
@@ -28,6 +30,7 @@ import pandas as pd
 import os
 import mammoth    #to handle docx
 import csv
+import shutil
 """for import CSV"""
 
 
@@ -37,32 +40,74 @@ def index(request):
 
 
 
-def test(request):
-    b = Output(study_id=1, domain='AE',outputfile='ADAE',type='ADAM',objet_id=2)
-    b.save()
-    return render(request, 'figures/test.html' ,{ 'output' : b } )   
-	
-	
+ 
 	
     """view of a containt of a dataset"""	
-def getData(request,study_id, id):
-      output = get_object_or_404(Output, id=id)
-      studyy=get_object_or_404(Study, id=study_id)
-      if output.objet_id==1:
-         df = pd.read_sas('study/static/'+studyy.nom+'/SDTM/'+output.outputfile+'.sas7bdat',encoding="iso-8859-1")
-      if output.objet_id==2:
-         df = pd.read_sas('study/static/'+studyy.nom+'/ADAM/'+output.outputfile+'.sas7bdat',encoding="iso-8859-1")
-      if output.objet_id==3:
-         df = pd.read_sas('study/static/'+studyy.nom+'/TFLS/'+output.outputfile+'.rtf',encoding="utf-8")
-	  
-      variables=list(df.columns.values)
-
-      for varr in variables: 
-          df.rename(columns={''+varr+'': "<a href='"+varr+"/showSpecs#"+varr+"' Target='_blank' >"+varr+"</a>" }, inplace=True) 
-      dataset=mark_safe(df.to_html(classes='table table-bordered').replace('&lt;','<').replace('&gt;','>'))
+def getData(request , doc_id):
       
-      return render(request, 'study/getData.html', { 'dataframe' : df ,'dataset':dataset , 'var': variables, 'study_id':study_id, 'id':id, 'output':output})   
- 	
+    doc=get_object_or_404(Document, id=doc_id)    
+    test_name,test_ext=os.path.splitext(''+doc.document.name+'')
+    test_ext= test_ext.replace('.','') 
+    df= pd.DataFrame({'A' : []}) 
+	
+    if test_ext =="sas7bdat" :
+       df = pd.read_sas('figures/media/'+test_name+'.sas7bdat',encoding="iso-8859-1")
+       df = df.rename(columns=lambda x: x.upper())
+       df.to_csv('figures/static/tmpdata/'+doc.domain+'.csv') 
+    elif test_ext =="xpt" :
+       df = pd.read_sas('figures/media/'+test_name+'.xpt',format='xport',encoding="iso-8859-1")
+       df = df.rename(columns=lambda x: x.upper())
+       df.to_csv('figures/static/tmpdata/'+doc.domain+'.csv') 
+    elif test_ext =="csv" :
+       df = pd.read_csv('figures/media/'+test_name+'.csv',encoding="iso-8859-1")
+       df = df.rename(columns=lambda x: x.upper())       
+       shutil.copy('figures/media/'+test_name+'.csv', 'figures/static/tmpdata/'+doc.domain+'.csv')
+    else: 
+       warn_message = "Only sasdataset or xpt file are accepted"		 
+ 	 
+	
+
+	 	###data visualization for safety ADAMs 
+    graph_list = [ ]	
+    if doc.domain =='ADAE':
+       graph_list = ['aeTimelines','aeExplorer']   
+    else :
+        if  doc.domain =='ADLB' or  doc.domain =='ADVS' or  doc.domain =='ADEG':
+            graph_list = ['safetyHistogram','safetyOutlierExplorer','safetyResultsOverTime','safety-shift-plot-master']
+        else :
+            if  doc.domain =='ADSL':
+                graph_list = ['demoPlot']             
+            else :
+                graph_list = [ ] 
+               		
+		   
+			###data visualization for safety SDTMs 
+    if  doc.domain =='AE':
+        graph_list = ['aeTimelines' ]	
+
+		
+    if df.empty :
+       dataset=''
+       warn_message = "Only sasdataset or xpt file are accepted"		 
+    else:
+       variables=list(df.columns.values )	
+       ###Link each variable to a description
+       for varr in variables: 
+           df.rename(columns={''+varr+'': "<a href='"+"infoVar/"+doc.domain+"/"+varr+"/' Target='_blank' >"+varr+"</a>" }, inplace=True) 
+       dataset=mark_safe(df.to_html(classes='display nowrap').replace('&lt;','<').replace('&gt;','>').replace('<table ',' <table id="example" style="width:100%" ') )
+      
+   
+	  
+	  
+    return render(request, 'figures/getData.html', { 'document':doc , 'dataset':dataset, 'graph_list':graph_list })   
+ 
+  
+def data_visu(request, domain, graff ):
+    return render(request, 'figures/data_visu.html', {  'domain':domain,  'graff':graff}) 
+		
+  
+ 		
+
 	
 
 from sas7bdat import SAS7BDAT
@@ -161,13 +206,47 @@ def output(request,study_id, id ):
 		
 		
  	
-def viewOutput(request,study_id, id):
-      output = get_object_or_404(Output, id=id)
-      studyy=get_object_or_404(Study, id=study_id)
-      if output.objet_id==3:
-         with open('study/static/'+studyy.nom+'/TFLS/'+output.outputfile+'.docx', "rb") as docx_file:
-              result_ = mammoth.convert_to_html(docx_file)
-              result=result_.value.replace("<p>","<p class='c' style:'line-height:  1;' >") 
-      return render(request, 'study/viewOutput.html', {'viewOutput':result ,  'study_id':study_id, 'id':id, 'output':output})   
+  
  	  
+##upload
+ 
+
+def test(request):
+    documents = Document.objects.all()
+    return render(request, 'figures/test.html', { 'document': documents.last(),   })	
+	
+	###permanent saved file 
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            documents = Document.objects.all()
+            return render(request, 'figures/test.html', {'document' : documents.last(),  }   )
+    else:
+        form = DocumentForm()
+    return render(request, 'figures/upload_form.html', {
+        'form': form
+    })  
+	
+ 
+
+##Specifications##
+ 
+def infoVar(request,domain, var):
+     
+      df = pd.read_csv('figures/static/tmpdata/'+domain+'.csv',encoding="iso-8859-1") 
+      df = df.rename(columns=lambda x: x.upper())   
+  
+      uniq_val=df[[""+var+""]].describe().to_html(classes='table table-bordered table-sm') 
+      n_val=len(uniq_val)
+      graff =  'simpleCharts'  
+      return render(request, 'figures/infoVar.html', {'domain':domain , 'var':var, 'uniq_val':uniq_val,'n_val':n_val,'graff':graff })
+  
+	
+
+	
+	
+	
+	
 	

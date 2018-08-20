@@ -1,0 +1,19 @@
+ {% extends 'figures/baseout.html' %}
+ {% load static %}		
+ {% block content %}
+
+
+ <div class="tab-pane" id="Programer" role="tabpanel">
+  <p></p>
+ <h2><center>{{ test_name }}  </center></h2>
+ <p></p>
+  
+  
+  <span>  <input type="button" class="btn btn-primary"  value="Close this window" onclick="self.close()"> </a></span>
+ <p></p>
+  {{ dataset |safe}}
+
+ </div>
+ 
+ 
+{% endblock %}

@@ -150,6 +150,12 @@ STATIC_URL = '/static/'
 PROJECT_DIR = os.path.dirname(__file__)
 
 
+###upload
+MEDIA_URL = 'figures/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'figures/media')
+
+
+
 if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings

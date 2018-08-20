@@ -1,0 +1,55 @@
+PS C:\Users\Felipe\Documents\django> myvenv/Scripts/activate
+
+For virtual env :http://www.octetmalin.net/windows/scripts/powershell-activer-execution-des-scripts.php
+set-executionpolicy unrestricted
+
+Install django  after ? 
+pip install django
+
+Install packages: 
+pipi install django-bootstrap4
+pip install django-widget-tweaks
+pip install numpy
+pip install pandas
+pip install django-pandas
+pip install django-import-export
+pip install django-filter    // Read https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html
+pip install django-crispy-forms    //better forms aspect
+
+/*docx reader and covert to html ... */
+pip install mammoth
+pip install python-docx
+
+***stat software ;
+For R we need a patch on Windows : 
+From website :https://www.lfd.uci.edu/~gohlke/pythonlibs/ 
+Download rpy2-2.9.3-cp36-cp36m-win32.whl    (36 is the Python Version , win32 for python version as well) 
+Then:
+pip install rpy2-2.9.3-cp36-cp36m-win32.whl
+
+Then update environment varaible : 
+R_HOME:C:\Program Files\R\R-3.4.0\
+R_USER: C:\Users\Felipe
+PATH : add :C:\Program Files\R\R-3.4.0\
+        and: C:\Users\Felipe\Documents\django\myvenv\Lib\site-packages\rpy2\robjects
+
+*****For CHROME****
+Install addon and.exe 
+LocalExplorer App
+
+
+
+****For cripsy for madd in settings : 
+INSALL_APPS: 'crispy_forms',
+then : 
+CRISPY_TEMPALTE_PACK = 'boostrap4' 
+
+
+
+****math package ;
+pip install scipy
+
+
+
+****for PDF 
+pip install PyMuPDF
