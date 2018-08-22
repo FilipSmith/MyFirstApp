@@ -26,90 +26,18 @@
     {% endif %}
 	
  
-       
+      {% if  graff == "pk1Plot"  %} 
+      <div id = 'title'>PK1 plot</div>
+	  <div style="text-align: center; margin-top: 2em">
+      <div id="displayFilter"></div>
+      <svg class="main" style="margin-top: 100px" width="1200", height="500"></svg>
+      <div id="moreInfo"></div>
+      </div>
+	  {% else %}
+	   
         <div id = 'container' style="border:3px;border-style: solid;height:700px;   overflow-y: scroll;"></div>
-		<div id="editor"></div>
-<button id="cmd"  onclick ="createPDF()">Generate PDF</button>
+		 
 		<br>
+      {% endif %}
  
- 
- 
- <script>
-
-function createPDF() {
-
-    var svg = '';
-// Provide the SVG parent div id
-
-    if (document.getElementById("ChartId") != null) {
-        svg = document.getElementById("ChartId").innerHTML;
-    }
-
-    if (svg)
-        svg = svg.replace(/\r?\n|\r/g, '').trim();
-
-    var pdfData = $('#container');//main html div
-
-
-    html2canvas(pdfData, {
-        onrendered: function(canvas) {
-
-            var contentWidth = canvas.width;
-            var contentHeight = canvas.height;
-
-            //The height of the canvas which one pdf page can show;
-            var pageHeight = contentWidth / 592.28 * 841.89;
-            //the height of canvas that haven't render to pdf
-            var leftHeight = contentHeight;
-            //addImage y-axial offset
-            var position = 0;
-            //a4 format [595.28,841.89]       
-            var imgWidth = 595.28;
-            var imgHeight = 592.28 / contentWidth * contentHeight;
-
-            var ctx = canvas.getContext('2d');
-
-
-            canvg(canvas, svg, {
-                offsetX: 10,
-                offsetY: 660,
-                ignoreMouse: true,
-                ignoreAnimation: true,
-                ignoreClear: true,
-                ignoreDimensions: true
-            });
-
-            var pageData = new Image();
-            pageData = canvas.toDataURL('image/jpeg', 1.0);
-
-
-            var pdf = new jsPDF('l', 'pt', 'a4', true);
-
-            if (leftHeight < pageHeight) {
-                pdf.addImage(pageData, 'JPEG', 100, 20, imgWidth, imgHeight);
-
-            } else {
-                console.log('page 2');
-                while (leftHeight > 0) {
-                    pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
-                    leftHeight -= pageHeight;
-                    position -= 841.89;
-                    //avoid blank page
-                    if (leftHeight > 0) {
-                        pdf.addPage();
-                    }
-                }
-            }
-            pdf.save('Test.pdf');
-        }
-    });
-}
-
-
- 
-
-
-	 </script>
-	 
-	 
 {% endblock %} 

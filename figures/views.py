@@ -76,11 +76,13 @@ def getData(request , doc_id):
             graph_list = ['safetyHistogram','safetyOutlierExplorer','safetyResultsOverTime','safety-shift-plot-master']
         else :
             if  doc.domain =='ADSL':
-                graph_list = ['demoPlot']             
+                graph_list = ['demoPlot']   
             else :
-                graph_list = [ ] 
-               		
-		   
+                if  doc.domain =='ADPP' or  doc.domain =='ADPC':
+                    graph_list = ['pk1Plot','pk2Plot' ]
+                else :
+                       graph_list = [ ] 
+ 
 			###data visualization for safety SDTMs 
     if  doc.domain =='AE':
         graph_list = ['aeTimelines' ]	
@@ -95,9 +97,6 @@ def getData(request , doc_id):
        for varr in variables: 
            df.rename(columns={''+varr+'': "<a href='"+"infoVar/"+doc.domain+"/"+varr+"/' Target='_blank' >"+varr+"</a>" }, inplace=True) 
        dataset=mark_safe(df.to_html(classes='display nowrap').replace('&lt;','<').replace('&gt;','>').replace('<table ',' <table id="example" style="width:100%" ') )
-      
-   
-	  
 	  
     return render(request, 'figures/getData.html', { 'document':doc , 'dataset':dataset, 'graph_list':graph_list })   
  
@@ -173,9 +172,7 @@ def output(request,study_id, id ):
 		###data visualization for safety ADAMs 
         if output.outputfile =='ADAE':
            graph_list = ['aeTimelines','aeExplorer']
-
-
-		   
+ 
         else :
              if output.outputfile =='ADLB' or output.outputfile =='ADVS' or output.outputfile =='ADEG':
                 graph_list = ['safetyHistogram','safetyOutlierExplorer','safetyResultsOverTime','safety-shift-plot-master']
@@ -183,9 +180,9 @@ def output(request,study_id, id ):
                   if output.outputfile =='ADSL':
                      graph_list = ['demoPlot']             
                   else :
-                        graph_list = [ ] 
-               		
-		   
+       
+                            graph_list = [ ] 
+ 
 			###data visualization for safety ADAMs 
         if output.outputfile =='AE':
            graph_list = ['aeTimelines' ]	

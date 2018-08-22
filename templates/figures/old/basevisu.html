@@ -20,57 +20,65 @@
 
 	<link rel="stylesheet" type="text/css" href="/static/css/accueil.css">
     <!-- Bootstrap CSS -->
-	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   
-
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	
-		{% if   domain == "ADPC"  %}
-		<script src="https://d3js.org/d3.v4.min.js"></script>
-	    <link type = 'text/css' rel = 'stylesheet' href = '/static/css/pk/style.css'>
-		{% else %}
-        <script type = 'text/javascript' src = '/static/JS/d3.v3.min.js'></script>
-	    <script type = 'text/javascript' src = '/static/JS/webcharts.js'></script>
-	    <link type = 'text/css' rel = 'stylesheet' href = '/static/css/webcharts.css'>
+	
+    <script type = 'text/javascript' src = '/static/JS/d3.v3.min.js'></script>
+	<script type = 'text/javascript' src = '/static/JS/webcharts.js'></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+	
+	<script type = 'text/javascript' src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+	<script type = 'text/javascript' src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+	<script type = 'text/javascript' src = "https://cdnjs.cloudflare.com/ajax/libs/canvg/1.5/canvg.min.js"></script>
+	
+	<link type = 'text/css' rel = 'stylesheet' href = '/static/css/webcharts.css'>
+	
+	
 	 
-         	{% if   graff == "aeTimelines"  %}
-         	    <script>var  visutype= aeTimelines </script>
-                 <script type = 'text/javascript' src = '/static/JS/ADAM/aeTimelines.js'></script>
-            {% endif %}
-         	{% if  graff == "aeExplorer"  %}
-         	    <script>var  visutype= aeTable </script>
-                 <script type = 'text/javascript' src = '/static/JS/aeTable.js'></script>
-                 <link type = 'text/css' rel = 'stylesheet' href = '/static/JS/aeTable.css'>
-            {% endif %}
-         	{% if   graff == "safetyHistogram"  %}
-         	    <script>var  visutype= safetyHistogram </script>
-                 <script type = 'text/javascript' src = '/static/JS/safetyHistogram.js'></script> 
-             {% endif %}
-             {% if   graff == "safetyOutlierExplorer"  %}
-                 <script>var  visutype= safetyOutlierExplorer </script>
-                 <script type = 'text/javascript' src = '/static/JS/safetyOutlierExplorer.js'></script>
-             {% endif %}
-             {% if   graff == "safetyResultsOverTime"  %}
-         	    <script>var  visutype= safetyResultsOverTime </script>
-                 <script type = 'text/javascript' src = '/static/JS/safetyResultsOverTime.js'></script>
-             {% endif %}	
-             {% if   graff == "safety-shift-plot-master"  %} 
-         	    <script>var  visutype= safetyShiftPlot </script>
-                 <script type = 'text/javascript' src = '/static/JS/safetyShiftPlot.js'></script>
-             {% endif %}		
-             {% if   graff == "demoPlot"  %}
-                <script type = 'text/javascript' src = '/static/JS/demoPlot.js'></script>  
-             {% endif %}	
-             {% if   graff == "simpleCharts"  %}
-                 <script type = 'text/javascript' src = '/static/JS/SDTM/simpleCharts.js'></script>
-             {% endif %}	
-      {% endif %}
+	{% if   graff == "aeTimelines"  %}
+	    <script>var  visutype= aeTimelines </script>
+        <script type = 'text/javascript' src = '/static/JS/ADAM/aeTimelines.js'></script>
+    {% endif %}
+	{% if  graff == "aeExplorer"  %}
+	    <script>var  visutype= aeTable </script>
+        <script type = 'text/javascript' src = '/static/JS/aeTable.js'></script>
+        <link type = 'text/css' rel = 'stylesheet' href = '/static/JS/aeTable.css'>
+    {% endif %}
+	{% if   graff == "safetyHistogram"  %}
+	    <script>var  visutype= safetyHistogram </script>
+        <script type = 'text/javascript' src = '/static/JS/safetyHistogram.js'></script> 
+    {% endif %}
+    {% if   graff == "safetyOutlierExplorer"  %}
+        <script>var  visutype= safetyOutlierExplorer </script>
+        <script type = 'text/javascript' src = '/static/JS/safetyOutlierExplorer.js'></script>
+    {% endif %}
+    {% if   graff == "safetyResultsOverTime"  %}
+	    <script>var  visutype= safetyResultsOverTime </script>
+        <script type = 'text/javascript' src = '/static/JS/safetyResultsOverTime.js'></script>
+    {% endif %}	
+    {% if   graff == "safety-shift-plot-master"  %} 
+	    <script>var  visutype= safetyShiftPlot </script>
+        <script type = 'text/javascript' src = '/static/JS/safetyShiftPlot.js'></script>
+    {% endif %}		
+    {% if   graff == "demoPlot"  %}
+       <script type = 'text/javascript' src = '/static/JS/demoPlot.js'></script>  
+    {% endif %}	
+
+  
+    {% if   graff == "simpleCharts"  %}
+		<!--variable description-->
+        <script type = 'text/javascript' src = '/static/JS/SDTM/simpleCharts.js'></script>
+    {% endif %}	
+ 
   
 	<link type = 'text/css' rel = 'stylesheet' href = "/static/JS/index.css">
- 
+   {% if   graff == "pk1Plot"  %}
+    <link type = 'text/css' rel = 'stylesheet' href = '/static/css/pk/style.css'>
+    {% endif %}	
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Study Manager</title>
@@ -126,14 +134,17 @@
 		 
 	<!-- TITLE-->
 <h2><center> <span class="small"> 
-     <h2><center><span>{{ domain }} </span></center></h2>
+     <h2><center><span>{{ document.domain }} </span></center></h2>
+</h2>  
+	 
 
             {% block content %}
             {% endblock %}
 			
 			
-   {% if   graff == "pk1Plot"  %}
-      <script type = 'text/javascript' src = '/static/JS/pk1Plot.js'></script>
+
+{% if   graff == "pk1Plot"  %}
+   <script type = 'text/javascript' src = '/static/JS/pk1Plot.js'></script>
    {% else %}
                </div>
         </div>
@@ -152,7 +163,22 @@
 {% endif %}	
 {% if   graff == "safetyHistogram"  %}
     <script type = 'text/javascript' src = '/static/JS/index3.js'></script>
-	 
+	 <script>
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#container').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
+ </script>	
 {% endif %}
 {% if   graff == "safetyOutlierExplorer"  %}
     <script type = 'text/javascript' src = '/static/JS/index4.js'></script>
@@ -166,9 +192,12 @@
 {% if   graff == "demoPlot"  %}
    <script type = 'text/javascript' src = '/static/JS/index7.js'></script>
 {% endif %}	
-{% if   graff == "simpleCharts"  %}
-   <script type = 'text/javascript' src = '/static/JS/indexSH.js'></script>
-{% endif %}	
+
+
+    {% if   graff == "simpleCharts"  %}
+		<!--variable description-->
+       <script type = 'text/javascript' src = '/static/JS/indexSH.js'></script>
+    {% endif %}	
 
 
 
