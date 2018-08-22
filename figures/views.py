@@ -79,7 +79,7 @@ def getData(request , doc_id):
                 graph_list = ['demoPlot']   
             else :
                 if  doc.domain =='ADPP' or  doc.domain =='ADPC':
-                    graph_list = ['pk1Plot','pk2Plot' ]
+                    graph_list = ['pk1plot','pk2plot' ]
                 else :
                        graph_list = [ ] 
  
