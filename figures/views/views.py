@@ -32,7 +32,6 @@ from .stat_report import pop_count
 import datetime
 import numpy as np
 import pandas as pd
-import pandas_profiling
 import os
 import mammoth    #to handle docx
 import csv
