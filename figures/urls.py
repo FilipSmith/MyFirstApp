@@ -11,6 +11,7 @@ urlpatterns = [
   ###   path('upload_tmp', views.upload_file, name='upload_file'),	
     path('getData/<slug:doc_id>', views.getData, name='getData'),  
     path('data_visu/<str:domain>/<str:graff>', views.data_visu, name='data_visu'), 
+    path('data_dash/<str:domain>/<str:graff>', views.data_dash, name='data_dash'), 
     path('getData/infoVar/<str:domain>/<str:var>/', views.infoVar, name='infovar'), 	
 ]
 

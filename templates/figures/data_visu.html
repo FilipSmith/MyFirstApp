@@ -1,7 +1,10 @@
  {% extends 'figures/basevisu.html' %}
  {% load static %}		
  {% block content %}
-		
+ 
+   <h2 class="ser-title">{{domain}} dataset</h2>
+          <hr class="botm-line">
+		  
 		
 	{% if   graff == "aeTimelines"  %}
 	    <div id = 'title'>AE Timelines</div>
@@ -22,22 +25,18 @@
 		<div id = 'title'>Shift plot (Lab)</div>
     {% endif %}
 	{% if  graff == "demoPlot"  %}
-		<div id = 'title'>Test plot</div>
+		<div id = 'title'>Histogram </div>
     {% endif %}
-	
- 
-      {% if  graff == "pk1plot"  %} 
-      <div id = 'title'>PK1 plot</div>
+		  
+	 {% if  graff == "pk1plot"   or  graff == "pk2plot" %} 
+      <div id = 'title' ><center>{{ domain }} : Concentration profiles</center></div>
 	  <div style="text-align: center; margin-top: 2em">
-      <div id="displayFilter"></div>
+      <div id="displayFilter" style="color:white"></div>
       <svg class="main" style="margin-top: 100px" width="1200", height="500"></svg>
       <div id="moreInfo"></div>
       </div>
-	  {% else %}
-	   
-        <div id = 'container' style="border:3px;border-style: solid;height:700px;   overflow-y: scroll;"></div>
-		 
-		<br>
-      {% endif %}
- 
-{% endblock %} 
+     {% else %}	 
+      <div id = 'container' style="border:3px;border-style: solid;height:700px;   overflow-y: scroll;"></div>
+     {% endif %}
+  
+{% endblock %}

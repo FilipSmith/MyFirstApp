@@ -1000,7 +1000,7 @@ var defaultSettings = {
         id: 'USUBJID',
         major: 'AEBODSYS',
         minor: 'AEDECOD',
-        group: 'TRTA',
+        group: 'TRTP',
         details: [],
         filters: [{
             value_col: 'AESER',

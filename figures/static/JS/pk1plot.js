@@ -62,8 +62,6 @@ focus.append("rect")
     .attr("class", "zoom")
 
 
-
-
 var svgGroup = focus.append("g")
     .style("clip-path", "url(#clip)");
 
@@ -104,6 +102,8 @@ var tooltip = d3.select("body")
 let dim = {svg:{}}
 let dataStash = [];
 const displayFilter = {period: {}, analysis: {}, sex: {"all": true}, race: {"all": true}, age: {"all": true}}
+
+
 d3.csv("/static/tmpdata/ADPC.csv", type, function(error, data) {
     if (error) throw error;
     console.log(data[0])
@@ -134,18 +134,20 @@ d3.csv("/static/tmpdata/ADPC.csv", type, function(error, data) {
     console.log(dim, "dim")
 });
 
+const filterLabel = {period: "Period", analysis: "Analysis", sex: "Sex", race: "Race", age: "Age"}
+
 function createDisplayFilter() {
     const displayCont = d3.select('#displayFilter')
     for (let key in displayFilter){
         const group = displayCont.append("span").attr("id", key)
-        group.append("h3").html(key)
+        group.append("h3").html(filterLabel[key])
         for (let key1 in displayFilter[key]) {
-            group.append('label').html(key1)
+            group.append('label').html(key1+"\x20")
                 .append('input')
                 .attr("type", "radio")
                 .attr("data-group", key)
                 .attr("value", key1)
-                .attr("name", key)
+                .attr("name", key) 
                 .on("click", function () {
                     const el = d3.select(this),
                         group = el.attr("data-group"),
@@ -390,20 +392,20 @@ function displayTableContent(d) {
             const grid = {}
             const grid_columns = [
                 ["id", "SUBJID"],
-                ["period", "period"],
-                ["analysis", "analysis"],
-                ["treatment", "treatment"],
-                ["sex", "sex"],
-                ["race", "race"],
-                ["age", "age"],
-                ["time", "TIME"],
+                ["period", "Period"],
+                ["analysis", "Analysis"],
+                ["treatment", "Treatment"],
+                ["sex", "Sex"],
+                ["race", "Race"],
+                ["age", "Age"],
+                ["time", "Time"],
                 ["value", "Concentration (ng/mL)"]
             ];
-            let ul_start = "<ul class='list-group'>"
+            let ul_start = "<ul class='list-group' >"
             for (let i in d.values) {
                 for (let colum of grid_columns) {
                     let key = colum[0];
-                    if (!grid.hasOwnProperty(key)) grid[key] = ul_start + '<li class="list-group-item">' + colum[1] + '</li>'
+                    if (!grid.hasOwnProperty(key)) grid[key] = ul_start + '<li class="list-group-item" style="color:blue">' + colum[1] + '</li>'
                     if (key === 'time') {
                         grid[key] += '<li class="list-group-item">' + float_to_time(d.values[i].time) + 'h' +  '</li>'
                     } else {

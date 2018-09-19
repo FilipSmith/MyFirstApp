@@ -1,16 +1,47 @@
- 
  {% extends 'figures/baseout.html' %}
  {% load static %}		
  {% block content %}
-
- <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-  </form>
-
-  <p><a href="#">Return to home</a></p>
  
+  
+ 
+    <!--button type="button" class="btn btn-primary btn-block" onclick="document.getElementById('inputFile').click()">Add File</button-->
+ <form method="post" enctype="multipart/form-data">
+   {%csrf_token%}
+   
+    <!---Drag and drop upload document-->
+    <div class="form-group inputDnD">
+        <label class="sr-only" for="id_document">File Upload</label>
+        <input type="file" name="document" required id="id_document" class="form-control-file font-weight-bold text-white" onchange="readUrl(this)" data-title="Drag and drop a file">
+	
+    <!---Domain selection-->
+    <div class="btn-group btn-block special form-group" role="group" aria-label="Button group with nested dropdown">
+	
+	
+      <button type="button" class="btn btn-primary btn-xl">Domain</button>
+	  
+      <select name="domain" id="id_domain" class="btn btn-primary btn-xl form-group"  >
+       <option value="ADAE">ADAE</option>
+       <option value="ADSL" selected>ADSL</option>
+       <option value="ADVS">ADVS</option>
+       <option value="ADLB">ADLB</option>
+       <option value="ADEG">ADEG</option>
+       <option value="ADPC">ADPC</option>
+       <option value="ADPP">ADPP</option>
+      </select>
+	  
+      <button type="submit" class="btn btn-primary btn-xl">Upload</button>
+	  
+    </div>           
+  </div>
+  
+    </form>        
+ 
+   
+           <!----------------------------------------------------------------------------------------> 
+                                                                    <!-- END OF Outputs --> 
+                                       <!----------------------------------------------------------------------------------------> 
+								
+
  
  
  

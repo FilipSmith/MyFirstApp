@@ -1,31 +1,46 @@
- {% extends 'figures/baseout.html' %}
+ {% extends 'figures/basedata.html' %}
  {% load static %}		
  {% block content %}
-
-
- <div class="tab-pane" id="Programer" role="tabpanel">
-  <p></p>
- <h2><center>{{document.domain}} dataset</center></h2>
- <p></p>
-  
-    {% if  dataset  %}
-  
-         {% if  graph_list  %}
-         Choose your data vizualisation .
-         (to get the vizualisation , your dataset variable  names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)) 	  
-         <ul>	
-           {% for graff in graph_list  %} 
-           <li><a href="{% url 'data_visu' document.domain graff %}" target="_blank"> {{graff}} </a></li>
-           {% empty %}
-           {% endfor %}
-         </ul>  
-        {% endif %} 
-  
-     <span>  <input type="button" class="btn btn-primary"  value="Close this window" onclick="self.close()"> </a></span>
-     <p></p>
+ 
+   <h2 class="ser-title">{{document.domain}} dataset</h2>
+          <hr class="botm-line">
+          <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
+          {{ctable}}
+        {% if  dataset  %}
+		
+            Profile dataset and variable analysis.
+            <li><a href="/static/tmpdata/myoutputfile.html"> Click here </a></li>
+		  
+		    {% if  graph_list  %}
+			 <strong style="color:green">{{check_list}} </strong>		
+             <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
+			 
+			 <!-- list of possible visualization -->
+             	
+		        <p class="margin-top-md margin-bottom-md">
+                {% for graff in graph_list  %} 
+				
+				   {% if graff == "adsl_dash"  %} 
+		         <a href="{% url 'data_dash' document.domain graff  %}"
+ target="_blank" class="btn btn-form">{{graff}}</a>
+                    {% else  %}
+				 <a href="{% url 'data_visu' document.domain graff  %}"
+ target="_blank" class="btn btn-form">{{graff}}</a>
+                    {% endif  %} 					
+ 
+                {% empty %}
+                {% endfor %} 
+             
+                <a href="#" class="btn btn-danger pull-right" onclick="self.close()">Close this window</a>
+                </p>
+		     
+			 
+ 			{% endif %} 
+	         <!-- ----------------------------------->
+	 
      {{ dataset |safe}}
    {% else  %} 
-   <strong>This format is not recgnized.</strong>
+   <strong>This format is not recognized.</strong>
    
    {% endif %} 
    
@@ -36,6 +51,8 @@
 
 $(document).ready(function() {
     $('#example').DataTable( {
+	    
+        "deferRender": true,
         "scrollY": 500,
         "scrollX": true,
 	 
@@ -46,5 +63,5 @@ $(document).ready(function() {
  
 </script> 
 
-
+ 
 {% endblock %}
