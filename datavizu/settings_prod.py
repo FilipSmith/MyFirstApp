@@ -29,10 +29,9 @@ SECRET_KEY = 'eju%pq0d4#9oyyduzne+%wvo4c7yvb+ab5*3@z9m2o9yk=of7k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV') == 'PRODUCTION':
+ 
     DEBUG = False
-else:
-    DEBUG = True
+ 
 
 
 ALLOWED_HOSTS = ['demo-myfirstapp','127.0.0.1', '.herokuapp.com']
@@ -159,7 +158,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'figures/media')
 
 
 
-if os.environ.get('ENV') == 'PRODUCTION':
+ 
 
     # Static files settings
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -172,7 +171,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     )
  
 
-if os.environ.get('ENV') == 'PRODUCTION':
+ 
         # ...
         # Simplified static file serving.
         # https://warehouse.python.org/project/whitenoise/
