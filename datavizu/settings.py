@@ -29,9 +29,10 @@ SECRET_KEY = 'eju%pq0d4#9oyyduzne+%wvo4c7yvb+ab5*3@z9m2o9yk=of7k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
- 
-DEBUG = False
- 
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
 
 
 ALLOWED_HOSTS = ['demo-myfirstapp','127.0.0.1', '.herokuapp.com']
@@ -158,24 +159,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'figures/media')
 
 
 
- 
+if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
     # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'STATIC'),
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
     )
  
 
- 
+if os.environ.get('ENV') == 'PRODUCTION':
         # ...
         # Simplified static file serving.
         # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+        STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 		
 # Activate Django-Heroku.
 django_heroku.settings(locals())

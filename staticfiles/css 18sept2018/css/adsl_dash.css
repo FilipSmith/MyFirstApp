@@ -1,0 +1,157 @@
+
+.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1px;
+}
+
+circle.node {
+    fill: steelblue;
+    opacity: .6;
+}
+
+.zoom {
+    fill: none;
+    pointer-events: all;
+
+}
+
+div.tooltip {
+    background: #eee;
+    box-shadow: 0 0 5px #999999;
+    color: #333;
+    display: none;
+    font-size: 18px;
+    left: 130px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 95px;
+    width: 160px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 1;
+}
+
+div.tooltip * {
+    border: solid lightgray .08em;
+}
+
+.title-holder {
+    text-align: center;
+}
+.title {
+    font-family: 'Lato', sans-serif;
+}
+.subtitle {
+    font-size: 20px;
+}
+.font {
+    font-size: 18px;
+}
+
+/* legend */
+.legend {
+    font-size: 14px;
+}
+div.rect {
+    cursor: pointer;
+    border: solid 2px;
+}
+div.rect.disabled {
+    background-color: transparent !important;
+}
+
+div#legend {
+    padding: .3em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    display: block;
+    height: 100%;
+}
+
+div#legend div.content {
+    max-width: 10em;
+    max-height: 80%;
+    overflow: auto;
+    display: block;
+}
+
+div.legend {
+    display: flex;
+    padding: .2em;
+    border: solid lightgray 1px;
+    min-height: 3.4em;
+}
+
+div.legend span.text {
+    padding: .6em;
+}
+
+div#chart {
+    position: relative;
+    width: 960px;
+    padding-top: 2em;
+}
+div.legend div.rect {
+    position: relative;
+}
+
+div.legend div.rect span.plus {
+    position: absolute;
+    font-size: 2em;
+    margin-top: -.36em;
+    margin-left: .05em;
+    display: none;
+}
+
+div.legend div.rect span.minus {
+    position: absolute;
+    font-size: 2em;
+    margin-top: -.38em;
+    left: .19em;
+}
+
+div.legend div.rect.disabled span.minus {
+    display: none;
+
+}
+
+div.legend div.rect.disabled span.plus {
+    display: block;
+}
+
+div.col {
+    border: solid lightgrey .08em;
+	 
+}
+
+
+
+#dashboard {
+    width: 80%;
+    margin: 2% 2% 2% 2%;
+     
+}
+
+
+card text-center {
+    margin:1em;
+    border: 2px solid lightgrey;
+    border-radius: 3px;
+ 
+}
+
+

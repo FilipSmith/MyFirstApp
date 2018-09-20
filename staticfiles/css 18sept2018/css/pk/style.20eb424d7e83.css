@@ -1,0 +1,79 @@
+
+        .line, line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 1.5px;
+        }
+
+        g.over_node line, g.clicked_node line {
+            stroke-width: 3px;
+        }
+
+        circle {
+            r: 3
+        }
+
+        g.over_node circle, g.clicked_node circle {
+            r: 5
+        }
+
+        .zoom {
+            fill: none;
+            pointer-events: all;
+        }
+
+        div#displayFilter {
+            display: inline-flex;
+        }
+        div#displayFilter span {
+            display: grid;
+            margin-left: 1em;
+            background-color: #0cb8b6;
+            min-width: 12em;
+			 font-size: 12px;
+			border: 1px;
+            border-radius: 4px;
+			color: white;
+        }
+
+        line.dashed {
+            stroke-dasharray: 3,3;
+        }
+
+        div.tooltip {
+            position: absolute;
+            text-align: center;
+            width: auto;
+            height: auto;
+            padding: 2px;
+            font: 12px sans-serif;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #moreInfo {
+            background-color: lightgray;
+            width: fit-content;
+            margin: auto;
+            display: inline-flex;
+            margin-top: 2em;
+        }
+
+        .list-group{
+            margin-left: .5em;
+        }
+        .list-group-item:first-child{
+            font-weight: bold;
+        }
+        .list-group-item {
+            min-height: 3em;
+			font-family: Georgia, serif;
+        }
+
+ 
