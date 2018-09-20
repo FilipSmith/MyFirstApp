@@ -29,6 +29,7 @@ SECRET_KEY = 'eju%pq0d4#9oyyduzne+%wvo4c7yvb+ab5*3@z9m2o9yk=of7k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
+os.environ["ENV"] = "PRODUCTION"
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
 else:
@@ -148,7 +149,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'Berne, Suisse
 #Get path to project
 PROJECT_DIR = os.path.dirname(__file__)
 
