@@ -75,15 +75,21 @@
 	<link type = 'text/css' rel = 'stylesheet' href = "/static/JS/index.css">
  
 	
-				 
-  
+	  {% if "TRTP" not in trt_list and "TRTA" in trt_list %}
+            TRTVAR = TRTA
+      {% else %}
+            TRTVAR=TRTP
+      {% endif %}
 
+	 
+	  
   <script>
     var domain = "{{domain}}";
     var visutype = "{{graff}}" ;
 	
 	var sdtmvar = "{{ var }}";
 	var sdtmvar2 ="[{{ var }}]"
+	var TRTVAR="{{TRTVAR}}"
   </script>
   
 </head>
@@ -123,7 +129,7 @@
       <div class="row">
         <div class="col-md-12 col-sm-12">
   
-
+ 
             {% block content %}
             {% endblock %}
 		
@@ -147,7 +153,7 @@
   
     
 {% if   graff == "aeTimelines"  %}
-    <script type = 'text/javascript' src = '/static/JS/{{output.objet}}/index1.js'></script>
+    <script type = 'text/javascript' src = '/static/JS/index1.js'></script>
 {% endif %}	
 {% if   graff == "aeExplorer"  %}
     <script type = 'text/javascript' src = '/static/JS/index2.js'></script>

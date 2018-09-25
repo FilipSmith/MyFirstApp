@@ -28,6 +28,8 @@ from .data_check import data_check
 from .stat_report import pop_count
 
 
+from sas7bdat import SAS7BDAT
+
 """import le formulaire de form.py"""
 import datetime
 import numpy as np
@@ -58,21 +60,23 @@ def getData(request , doc_id):
     df_raw = pd.DataFrame({'A' : []})  
 	
     if test_ext == "sas7bdat" :
-       df = pd.read_sas('figures/media/'+test_name+'.sas7bdat',encoding="iso-8859-1")
+ 
+	   
+ 
+       with SAS7BDAT('figures/media/'+test_name+'.sas7bdat') as f:	   
+            df = f.to_data_frame()	   
        df_raw = df
        df = df.rename(columns=lambda x: x.upper())
-       df.to_csv('figures/static/tmpdata/'+doc.domain+'.csv') 
+       df.to_csv('figures/static/tmpdata/'+doc.domain+'.csv',encoding="iso-8859-1") 
     elif test_ext == "xpt" :
        df = pd.read_sas('figures/media/'+test_name+'.xpt',format='xport',encoding="iso-8859-1")
        df_raw = df	   
        df = df.rename(columns=lambda x: x.upper())
-       df = df.rename(columns=lambda x: x.upper())
-       df.to_csv('figures/static/tmpdata/'+doc.domain+'.csv') 
+       df.to_csv('figures/static/tmpdata/'+doc.domain+'.csv',encoding="iso-8859-1") 
     elif test_ext == "csv" :
        df = pd.read_csv('figures/media/'+test_name+'.csv',encoding="iso-8859-1")
        df_raw = df    
        df = df.rename(columns=lambda x: x.upper()) 
-       df = df.rename(columns=lambda x: x.upper())	   
        shutil.copy('figures/media/'+test_name+'.csv', 'figures/static/tmpdata/'+doc.domain+'.csv')
     else: 
        warn_message = "Only sasdataset or xpt file are accepted"		 
@@ -115,13 +119,19 @@ def getData(request , doc_id):
            check_list=check_list2           
  
        ###Link each variable to a description
-       flag_list=[]	   
+       flag_list=[]	
+       day_list=[]		
+       trt_list=[]	   
        for varr in variables: 
            df.rename(columns={''+varr+'': "<a href='"+"infoVar/"+doc.domain+"/"+varr+"/' Target='_blank' >"+varr+"</a>" }, inplace=True) 
            ###Population flag ? 
-           if varr[-2:]  == 'FL'  : 
+           if varr[-2:]  == 'FL' or varr in ("EFFICACY",  "SAFETY" , "ITT") : 
               flag_list=flag_list + [varr]
-			  
+           if varr[-2:]  == 'DY' :
+              day_list=day_list + [varr]	
+           if varr in ("TRTA",  "TRTP")    :
+              trt_list=trt_list + [varr]
+ 			  
        dataset=mark_safe(df.to_html(classes='table table-bordered table-hover').replace('&lt;','<').replace('&gt;','>').replace('<table ',' <table id="example2"  ') )
 	 
 	   ###descriptive stats	
@@ -129,16 +139,25 @@ def getData(request , doc_id):
        ctable11=pop_count(df,df_raw ,flag_list)  
        ctable=mark_safe(ctable11.to_html(classes="table table-striped"))
 	   
-    return render(request, 'figures/getData.html', { 'document':doc , 'dataset':dataset, 'graph_list':graph_list , 'check_list':check_list,'variables':variables, 'flag_list':flag_list, 'df':df, 'ctable':ctable})   
+    return render(request, 'figures/getData.html', { 'document':doc , 'dataset':dataset, 'graph_list':graph_list , 'check_list':check_list,'variables':variables, 'trt_list':trt_list ,'flag_list':flag_list,'day_list':day_list, 'df':df, 'ctable':ctable})   
  
   
 def data_visu(request, domain, graff  ):
-    return render(request, 'figures/data_visu.html', {  'domain':domain,  'graff':graff}) 
+
+
+    ###Check data before to display the figure
+    ###result =  all(elem in graff.req_var  for elem in variables)
+    ###if result:
+    ###    warn_note="Yes, all variables are presents"     
+    ###else :
+    ###    warn_note="No, some required variables are missing"   
+		
+    return render(request, 'figures/data_visu.html', {  'domain':domain,  'graff':graff  }) 
 		
 def data_dash(request, domain, graff  ):
     return render(request, 'figures/data_dash.html', {  'domain':domain,  'graff':graff})   
 
-from sas7bdat import SAS7BDAT
+ 
 
 def get_Label(foo,varname):
    
@@ -193,7 +212,10 @@ def infoVar(request,domain, var):
   
 	
 
-	
+
+def report_select(request):
+    documents = Document.objects.all()
+    return render(request, 'figures/report_select.html', { 'document': documents   })		
 	
 	
 	

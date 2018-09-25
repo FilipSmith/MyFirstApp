@@ -3,7 +3,7 @@ if (window.origin !== 'https://rhoinc.github.io') {
     var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = "/static/JS/ADAM"+visutype+".js";
+    script.src = "/static/JS/ADAM/"+visutype+".js";
     head.appendChild(script);
 }
  

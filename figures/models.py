@@ -253,7 +253,7 @@ class Document(models.Model):
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
   
-
+###DOMAIN SELECTION
     ADAE = 'ADAE'
     ADSL = 'ADSL'
     ADVS = 'ADVS'
@@ -261,7 +261,14 @@ class Document(models.Model):
     ADEG = 'ADEG'
     ADPC = 'ADPC'
     ADPP = 'ADPP'
-	
+    DM = 'DM'
+    EG = 'EG'
+    VS = 'VS'
+    AE = 'AE'
+    SV = 'SV'
+    LB = 'LB'
+    TA = 'TA'	
+	  
     DOMAIN_CHOICES = (
         (ADAE, 'ADAE'),
         (ADSL, 'ADSL'),
@@ -270,19 +277,67 @@ class Document(models.Model):
         (ADEG, 'ADEG'),
         (ADPC, 'ADPC'),
         (ADPP, 'ADPP'),
+        (DM, 'DM'),
+        (EG, 'EG'),
+        (VS, 'VS'),
+        (AE, 'AE'),
+        (SV, 'SV'),
+        (LB, 'LB'),
+        (TA, 'TA')
     )
 	
     domain = models.CharField(
         max_length=20,
         choices=DOMAIN_CHOICES,
         default=ADSL,
-    ) 
+    )
+
+
+	###TYPE SELECTION 
+	
+	
+    SDTM = 'SDTM'
+    ADAM = 'ADAM'
+    RAW = 'RAW'	
+	  
+    TYPE_CHOICES = (
+        (SDTM, 'SDTM'),
+        (ADAM, 'ADAM'),
+        (RAW, 'RAW')
+    )
+	
+    type = models.CharField(
+        max_length=5,
+        choices=TYPE_CHOICES,
+        default=ADAM,
+    ) 	
 	
     def __str__(self):
         return  '%s %s' % (self.id,  self.document.name)      	
 		
     
 		
+
+class Graph(models.Model):
+    nom = models.CharField(max_length=30)
+    title = models.TextField(max_length=400) 
+    req_var = models.TextField(max_length=400)
+
+    def __str__(self):
+        return self.nom
+		
+		
+class Dataset(models.Model):
+    nom = models.CharField(max_length=30)
+    title = models.TextField(max_length=400) 
+    req_var = models.TextField(max_length=400)
+    type=models.CharField(max_length=20)   
+    def __str__(self):
+        return self.nom
+
+
+
+
 		
 		
 		

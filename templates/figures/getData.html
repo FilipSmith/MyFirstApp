@@ -5,11 +5,17 @@
    <h2 class="ser-title">{{document.domain}} dataset</h2>
           <hr class="botm-line">
           <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
+		  {{day_list}}
+		  <br>
+		  {{trt_list}}
           {{ctable}}
+		  
+		  
         {% if  dataset  %}
 		
-             
-		  
+		<!--CDISC check -->
+		
+		
 		    {% if  graph_list  %}
 			 <strong style="color:green">{{check_list}} </strong>		
              <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
@@ -36,8 +42,8 @@
 			 
  			{% endif %} 
 	         <!-- ----------------------------------->
-	 
-     {{ dataset |safe}}
+	 <div class="bs-table table-responsive" data-example-id="striped-table table-responsive"> 
+   {{ dataset |safe}} </div>
    {% else  %} 
    <strong>This format is not recognized.</strong>
    

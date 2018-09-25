@@ -29,7 +29,7 @@ SECRET_KEY = 'eju%pq0d4#9oyyduzne+%wvo4c7yvb+ab5*3@z9m2o9yk=of7k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-os.environ["ENV"] = "PRODUCTION"
+#os.environ["ENV"] = "PRODUCTION"
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
 else:
