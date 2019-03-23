@@ -10,11 +10,12 @@ urlpatterns = [
     path('report_select', views.report_select, name='report_select'),
     path('upload', views.model_form_upload, name='model_form_upload'),
   ###   path('upload_tmp', views.upload_file, name='upload_file'),	
-    path('getData/<slug:doc_id>', views.getData, name='getData'),  
-    path('data_visu/<str:domain>/<str:graff>', views.data_visu, name='data_visu'), 
-    path('data_dash/<str:domain>/<str:graff>', views.data_dash, name='data_dash'), 
+    path('getData/<slug:doc_id>', views.getData, name='getData'), 
+    path('data_dash2/<str:doc_id>/', views.data_dash2, name='data_dash2'),
+    path('data_dash/<str:doc_id>/<str:graff>/', views.data_dash, name='data_dash'),  	
+    path('data_visu/<str:doc_id>/<str:graff>/', views.data_visu, name='data_visu'), 
     path('getData/infoVar/<str:domain>/<str:var>/', views.infoVar, name='infovar'), 
-    path('cdisc_check/<str:domain>/', views.cdisc_check, name='cdisc_check'),	
+    
 ]
 
 if settings.DEBUG:

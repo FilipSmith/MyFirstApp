@@ -310,7 +310,15 @@ class Document(models.Model):
         max_length=5,
         choices=TYPE_CHOICES,
         default=ADAM,
-    ) 	
+    ) 
+
+    pop_flag = models.TextField(max_length=400)	
+    variables = models.TextField(max_length=1000)	
+    study_name = models.TextField(max_length=30)
+	   
+    number_of_subj = models.CharField(max_length=30)	
+    arms = models.TextField(max_length=1000)
+    n_pop_flag = models.CharField(max_length=20)
 	
     def __str__(self):
         return  '%s %s' % (self.id,  self.document.name)      	

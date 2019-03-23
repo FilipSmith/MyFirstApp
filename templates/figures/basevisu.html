@@ -38,36 +38,36 @@
 	    <script type = 'text/javascript' src = '/static/JS/webcharts.js'></script>
 	    <link type = 'text/css' rel = 'stylesheet' href = '/static/css/webcharts.css'>
 	 
-         	{% if   graff == "aeTimelines"  %}
+         	{% if   graph.nom == "aeTimelines"  %}
          	     <script>var  visutype= aeTimelines </script>
                  <script type = 'text/javascript' src = '/static/JS/ADAM/aeTimelines.js'></script>
             {% endif %}
-         	{% if  graff == "aeExplorer"  %}
+         	{% if  graph.nom == "aeExplorer"  %}
          	     
                  <script type = 'text/javascript' src = '/static/JS/aeTable.js'></script>
                  <link type = 'text/css' rel = 'stylesheet' href = '/static/JS/aeTable.css'>
             {% endif %}
-         	{% if   graff == "safetyHistogram"  %}
+         	{% if   graph.nom == "safetyHistogram"  %}
          	     <script>var  visutype= safetyHistogram </script>
                  <script type = 'text/javascript' src = '/static/JS/safetyHistogram.js'></script> 
              {% endif %}
-             {% if   graff == "safetyOutlierExplorer"  %}
+             {% if   graph.nom == "safetyOutlierExplorer"  %}
                  <script>var  visutype= safetyOutlierExplorer </script>
                  <script type = 'text/javascript' src = '/static/JS/safetyOutlierExplorer.js'></script>
              {% endif %}
-             {% if   graff == "safetyResultsOverTime"  %}
+             {% if   graph.nom == "safetyResultsOverTime"  %}
          	     <script>var  visutype= safetyResultsOverTime </script>
                  <script type = 'text/javascript' src = '/static/JS/safetyResultsOverTime.js'></script>
              {% endif %}	
-             {% if   graff == "safety-shift-plot-master"  %} 
+             {% if   graph.nom == "safety-shift-plot-master"  %} 
          	     <script>var  visutype= safetyShiftPlot </script>
                  <script type = 'text/javascript' src = '/static/JS/safetyShiftPlot.js'></script>
              {% endif %}		
-             {% if   graff == "demoPlot"  %}
+             {% if   graph.nom == "demoPlot"  %}
                  <script type = 'text/javascript' src = '/static/JS/demoPlot.js'></script>  
              {% endif %}
              			 
-             {% if   graff == "simpleCharts"  %}
+             {% if   graph.nom == "simpleCharts"  %}
                  <script type = 'text/javascript' src = '/static/JS/SDTM/simpleCharts.js'></script>
              {% endif %}	
       {% endif %}
@@ -134,8 +134,8 @@
             {% endblock %}
 		
 
-{% if   graff == "pk1plot" or   graff == "pk2plot"  or  graff == "adsl_dash" %}
-      <script type = 'text/javascript' src = '/static/JS/{{graff}}.js'></script>
+{% if   graph.nom == "pk1plot" or   graph.nom == "pk2plot"  or  graph.nom == "adsl_dash" %}
+      <script type = 'text/javascript' src = '/static/JS/{{graph.nom}}.js'></script>
    
 {% endif %}		
 	
@@ -152,30 +152,30 @@
   <!--/ service-->
   
     
-{% if   graff == "aeTimelines"  %}
+{% if   graph.nom == "aeTimelines"  %}
     <script type = 'text/javascript' src = '/static/JS/index1.js'></script>
 {% endif %}	
-{% if   graff == "aeExplorer"  %}
+{% if   graph.nom == "aeExplorer"  %}
     <script type = 'text/javascript' src = '/static/JS/index2.js'></script>
 {% endif %}	
-{% if   graff == "safetyHistogram"  %}
+{% if   graph.nom == "safetyHistogram"  %}
     <script type = 'text/javascript' src = '/static/JS/index3.js'></script>
 	 
 {% endif %}
-{% if   graff == "safetyOutlierExplorer"  %}
+{% if   graph.nom == "safetyOutlierExplorer"  %}
     <script type = 'text/javascript' src = '/static/JS/index4.js'></script>
 {% endif %}	
-{% if   graff == "safetyResultsOverTime"  %}
+{% if   graph.nom == "safetyResultsOverTime"  %}
     <script type = 'text/javascript' src = '/static/JS/index5.js'></script>
 {% endif %}	
-{% if   graff == "safety-shift-plot-master"  %}
+{% if   graph.nom == "safety-shift-plot-master"  %}
     <script type = 'text/javascript' src = '/static/JS/index6.js'></script>
 {% endif %}	
-{% if   graff == "demoPlot"  %}
+{% if   graph.nom == "demoPlot"  %}
    <script type = 'text/javascript' src = '/static/JS/index7.js'></script>
 {% endif %}	
  
-{% if   graff == "simpleCharts"  %}
+{% if   graph.nom == "simpleCharts"  %}
    <script type = 'text/javascript' src = '/static/JS/indexSH.js'></script>
 {% endif %}	
   

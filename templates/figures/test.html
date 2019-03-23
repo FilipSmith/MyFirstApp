@@ -2,38 +2,22 @@
  {% load static %}		
  {% block content %}
  
-   <div  style="background-color:white">
-   <ul>
- 
-    <li>
-      <a href="{% url 'model_form_upload' %}">Model Form Upload</a>
-    </li>
-  </ul>
-
-  <p>Uploaded files:</p>
-  <ul >
+   
   
-    <li>
-	   
-      <a href="{{ document.document.url }}">Go to {{ document.domain }} (open with SAS viewer)</a>
-	</li>
-	<li>
-       <a href="{% url 'getData' document.id    %}" target="_blank" >Display data {{ document.domain}}</a> 
-	      <small>(Uploaded at: {{ document.uploaded_at }})</small>
- 
- 
-  </ul>
- 
+  <!---------------------------------------------------------------------------------------->  
+<div class="panel panel-success">
+   <div class="panel-heading">Uploaded files: <a href="{% url 'model_form_upload' %}" class="pull-right">Model Form Upload</a></div>
+   <div class="panel-body">
+      <ul class="list-group">
+         <li class="list-group-item"><a href="{{ document.document.url }}">Go to {{ document.domain }} (open with SAS viewer)</a></li>
+         <li class="list-group-item"><a href="{% url 'getData' document.id    %}" target="_blank">Display data {{ document.domain}}</a><small>(Uploaded at: {{ document.uploaded_at }})</small></li>
+	  </ul>
+    </div>
 </div>
- 
- 
- 
-                                       <!----------------------------------------------------------------------------------------> 
-                                                                    <!-- END OF Outputs --> 
-                                       <!----------------------------------------------------------------------------------------> 
+  
+                                                      
+ <!----------------------------------------------------------------------------------------> 
 								
-
- 
  
  
 {% endblock %} 

@@ -1,40 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CDISC - Upload</title>
-  <meta name="description" content="CDISC - Upload">
-  <meta name="keywords" content="data science, pharama">
-
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
-  <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-  <!-- DataTables -->
-
-  <link rel="stylesheet" href="/static/JS/datatables.net-bs/css/dataTables.bootstrap.min.css">
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Demo - Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   
- 
+  
+  
+  <!-- Font Awesome --> 
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/static/css/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/static/dashboard/css/dashboard.css"> 
-  <link rel="stylesheet" href="/static/dashboard/css/skins/skin-blue.css">
+  <!-- Google Font --> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> 
+  <!-- DataTables -->
+  <link rel="stylesheet" type="text/css" href="/static/css/style_test.css?v=1.5">
   
-  
-  <link rel="stylesheet" type="text/css" href="/static/css/style.css?v=1.5">
-  
-  
-   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
-  
-  {% if graff == "adsl_dash" %}
+
+  {% if graph.nom == "adsl_dash" %}
 	    <script src="https://d3js.org/d3.v4.min.js"></script>
 	    <link type = 'text/css' rel = 'stylesheet' href = '/static/css/adsl_dash.css'>
-	{% endif %} 		 
+  {% endif %} 		 
   
 
   <script>
@@ -42,15 +34,36 @@
     var visutype = "{{graff}}" ;
 	
 	var sdtmvar = "{{ var }}";
-	var sdtmvar2 ="[{{ var }}]"
+	var sdtmvar2 ="[{{ var }}]";
+	
+	var HEIGHTVAR = "{{ HEIGHT_VAR }}";
+	var WEIGHTVAR = "{{ WEIGHT_VAR }}";
+	var BMIVAR = "{{ BMI_VAR }}";
+	var FLAGEFF = "{{ FLAG_EFF }}";
+	var FLAGSAF = "{{ FLAG_SAF }}";  
+	
   </script>
+  
+  
+  		
+<style>
+.center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+</style>
+
+  
+  
   
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <!--banner-->
   <section class="banner">
-    <div class="">
+    
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="col-md-12">
@@ -75,34 +88,24 @@
         </div>
       </nav>
   </section>
-  <!--/ banner-->
-  <!--service-->
-  <section id="dataset" class="section-padding">
+ 
+ <section id="dataset" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12">
+		
+           <br><br> <br><br> 
+           {{WARN_MESSAGE}}	
+		   
+           {% block content %}
+           {% endblock %}
   
-
-            {% block content %}
-            {% endblock %}
-		
-
- {% if   graff == "pk1plot" or   graff == "pk2plot"  or  graff == "adsl_dash" %}
-      <script type = 'text/javascript' src = '/static/JS/{{graff}}.js'></script>
- 
-{% endif %}		
-
-		
-			
      </div>
-        
-        
       </div>
     </div>
-  </section>
-  <!--/ service-->
-  
-  <!--/ contact-->
+  </section> 
+		
+ <!--/ contact-->
   <!--footer-->
   <footer id="footer">
     <div class="top-footer">
@@ -157,17 +160,32 @@
     </div>
   </footer>
   <!--/ footer-->
-
+ 
+ 
+ 
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/static/JS/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="/static/JS/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+  $.widget.bridge('uibutton', $.ui.button);
+  </script>
+  
   <script src="/static/JS/jquery.easing.min.js"></script>
   <script src="/static/JS/bootstrap.min.js"></script>
-  <!-- DataTables -->
-  <script src="/static/JS/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/static/JS/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="/static/JS/custom.js"></script>
-  <script src="/static/contactform/contactform.js"></script>
+  
+ 
+  <!-- Dashboard App -->
+  <script src="/static/dashboard/js/app.min.js"></script>
+  <script src="/static/dashboard/js/dashboard.js"></script>
+ 
+  
+<script src="/static/plugins/html2canvas/dist/html2canvas.js"></script>
+ 
+<script type="module" src="/static/js/adsl_dash.js"></script>
  
 
 </body>
-
 </html>

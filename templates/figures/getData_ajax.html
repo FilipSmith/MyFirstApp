@@ -1,0 +1,82 @@
+ {% extends 'figures/basedata.html' %}
+ {% load static %}		
+ {% block content %}
+ 
+   <h2 class="ser-title">{{document.domain}} dataset</h2>
+          <hr class="botm-line">
+          <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
+		  {{day_list}}
+		  <br>
+		  {{trt_list}}
+          {{ctable}}
+		  
+		  
+        {% if  dataset  %}
+		
+		<!--CDISC check -->
+		
+		
+		    {% if  graph_list  %}
+			 <strong style="color:green">{{check_list}} </strong>		
+             <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
+			 
+			 <!-- list of possible visualization -->
+             	
+		        <p class="margin-top-md margin-bottom-md">
+                {% for graff in graph_list  %} 
+				
+				   {% if graff == "adsl_dash"  %} 
+		         <a href="{% url 'data_dash' document.domain graff  %}"
+ target="_blank" class="btn btn-form">{{graff}}</a>
+                    {% else  %}
+				 <a href="{% url 'data_visu' document.domain graff  %}"
+ target="_blank" class="btn btn-form">{{graff}}</a>
+                    {% endif  %} 					
+ 
+                {% empty %}
+                {% endfor %} 
+             
+                <a href="#" class="btn btn-danger pull-right" onclick="self.close()">Close this window</a>
+                </p>
+		     
+			 
+ 			{% endif %} 
+	         <!-- ----------------------------------->
+  <div class="bs-table table-responsive" data-example-id="striped-table">
+          	<table id="example2" class="table table-bordered table-hover">
+				<thead>
+		            <tr>
+		                <th>Name</th>
+		                <th>Position</th>
+		                <th>Office</th>
+		                <th>Extn.</th>
+		                <th>Start date</th>
+		                <th>Salary</th>
+		            </tr>
+		        </thead>
+		        <tfoot>
+		            <tr>
+		                <th>Name</th>
+		                <th>Position</th>
+		                <th>Office</th>
+		                <th>Extn.</th>
+		                <th>Start date</th>
+		                <th>Salary</th>
+		            </tr>
+		        </tfoot>
+				
+			</table>
+
+
+          </div>
+   {% else  %} 
+   <strong>This format is not recognized.</strong>
+   
+   {% endif %} 
+   
+
+ </div>
+  
+
+ 
+{% endblock %}

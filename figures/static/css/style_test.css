@@ -1,0 +1,178 @@
+/*
+    Theme Name: Medilab
+    Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+*/
+ 
+body {
+	font-family: 'Open Sans', sans-serif;
+	 
+	color: #999999;
+	font-size: 300;
+	font-size: 16px;
+}
+
+
+ol, ul {
+	list-style: none;
+}
+ 
+/***************************************
+footer
+***************************************/
+#footer{
+	background-color: #325C6A;
+}
+.ftr-tle {
+    height: 50px;
+}
+.info-sec {
+    color: #fff;
+}
+.quick-info li i {
+    font-size: 8px;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: left;
+}
+.social-icon li {
+    float: left;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-right: 5px;
+}
+.bglight-blue {
+    background-color: #3498DB;
+}
+.bgred {
+    background-color: #E74C3C;
+}
+.bgdark-blue {
+    background-color: #2C3E50;
+}
+.bglight-blue {
+    background-color: #3498DB;
+}
+.top-footer {
+    padding: 40px 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.footer-line {
+    padding: 30px 0px;
+    color: #fff;
+}
+
+.footer-line a {
+    color: #0CB8B6;
+}
+
+.quick-info li a{
+    color: #fff;
+}
+.site-link, .site-link:hover, .site-link:focus
+{
+    color: #0cb8b6;
+    text-transform: none;
+}
+
+.btn-primary {
+  background-color: #0cb8b6;
+  border-color: #0cb8b6;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  color: #fff;
+  background-color: #0cb8b6 !important;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem #0cb8b65c !important;
+}
+.text-white{
+	color: #fff;
+}
+.inputDnD .form-control-file {
+	position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 6em;
+    outline: none;
+    visibility: hidden;
+    cursor: pointer;
+    background-color: #c61c23;
+    box-shadow: 0 0 5px solid currentColor;
+}
+
+.inputDnD .form-control-file:before {
+  content: attr(data-title);
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  width: 100%;
+  min-height: 6em;
+  line-height: 2em;
+  padding-top: 1.5em;
+  opacity: 1;
+  visibility: visible;
+  text-align: center;
+  border: 0.25em dashed currentColor;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  overflow: hidden;
+}
+
+.inputDnD .form-control-file:hover:before {
+	border-style: solid;
+	box-shadow: inset 0px 0px 0px 0.25em currentColor;
+}
+
+.btn-group.special {
+  display: flex;
+}
+
+.special .btn {
+  flex: 1
+}
+
+@media (min-width: 551px) and (max-width: 980px){
+
+}
+@media (min-width: 220px) and (max-width: 551px){
+    .testi-info{
+        margin-bottom: 20px;
+    }
+    .marb20{
+        margin-top: 30px;
+    }
+    h2{
+        font-size: 24px;
+        line-height: 1.2;
+    }
+    .section-title{
+        margin-bottom: 30px;
+    }
+    .medi-info {
+    border: 0px;
+    border-bottom: 1px solid #fff;
+    }
+    .service-info{
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+    .caption h3 {
+    font-size: 14px;
+    }
+    .caption p{
+    font-size: 12px;
+    padding-bottom: 5px;
+    }
+    .caption ul li a i{
+        font-size: 14px;
+    }
+    .banner-text h1{
+        font-size: 24px;
+    }
+}

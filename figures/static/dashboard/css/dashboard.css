@@ -234,6 +234,36 @@ a:focus {
 .main-header .navbar-right {
   float: right;
 }
+
+.navbar-default {
+    background-color: #325c6a;
+    border: 0px;
+    min-height: 50px;
+    padding: 20px  0;
+    transition: all 0.3s;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: rgba(12, 184, 182, 0.21);
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
+    background-color: rgba(12, 184, 182, 0.21);
+}
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.top-nav-collapse {
+    padding: 0;
+    background: rgba(28,74,90, 0.9);
+}
+
 @media (max-width: 991px) {
   .main-header .navbar-custom-menu a,
   .main-header .navbar-right a {

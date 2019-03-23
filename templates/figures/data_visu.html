@@ -6,29 +6,29 @@
           <hr class="botm-line">
 		 Ici:: {{trt_list}}
 		
-	{% if   graff == "aeTimelines"  %}
+	{% if   graph.nom == "aeTimelines"  %}
 	    <div id = 'title'>AE Timelines</div>
     {% endif %}
-	{% if  graff == "aeExplorer"  %}
+	{% if  graph.nom == "aeExplorer"  %}
 		<div id = 'title'>AE Explorer</div>
     {% endif %}
-	{% if  graff == "safetyHistogram"  %}
+	{% if  graph.nom == "safetyHistogram"  %}
 		<div id = 'title'>Safety Histogram (Lab)</div>
     {% endif %}
-    {% if  graff == "safetyOutlierExplorer"  %}
+    {% if  graph.nom == "safetyOutlierExplorer"  %}
 		<div id = 'title'>Outlier Explorer (Lab)</div>
     {% endif %}
-	{% if  graff == "safetyResultsOverTime"  %}
+	{% if  graph.nom == "safetyResultsOverTime"  %}
 		<div id = 'title'>Results Over Time (Lab)</div>
     {% endif %}
-	{% if  graff == "safety-shift-plot-master"  %}
+	{% if  graph.nom == "safety-shift-plot-master"  %}
 		<div id = 'title'>Shift plot (Lab)</div>
     {% endif %}
-	{% if  graff == "demoPlot"  %}
+	{% if  graph.nom == "demoPlot"  %}
 		<div id = 'title'>Histogram </div>
     {% endif %}
 		  
-	 {% if  graff == "pk1plot"   or  graff == "pk2plot" %} 
+	 {% if  graph.nom == "pk1plot"   or  graph.nom == "pk2plot" %} 
       <div id = 'title' ><center>{{ domain }} : Concentration profiles</center></div>
 	  <div style="text-align: center; margin-top: 2em">
       <div id="displayFilter" style="color:white"></div>

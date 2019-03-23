@@ -1,6 +1,7 @@
 
+
 .arc text {
-    font: 10px sans-serif;
+    font-size: .9em;
     text-anchor: middle;
 }
 
@@ -20,6 +21,7 @@ circle.node {
 }
 
 .zoom {
+    cursor: move;
     fill: none;
     pointer-events: all;
 
@@ -71,29 +73,68 @@ div.rect.disabled {
     background-color: transparent !important;
 }
 
-div#legend {
+rect.outline {
+    stroke: gray;
+    stroke-width: 3px;
+}
+
+div#legend, .chart_mix {
     padding: .3em;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 60px;
+ /*   right:0 ;*/
     bottom: auto;
     left: auto;
     display: block;
     height: 100%;
 }
 
-div#legend div.content {
+.chart_mix li {
+    cursor: pointer;
+	 
+}
+
+g.axis.ticksHidden .tick {
+
+}
+
+
+
+div#legend div.content2{
     max-width: 10em;
     max-height: 80%;
     overflow: auto;
     display: block;
 }
 
+
+
+ .content2 {
+   font-size:10em;
+   height: 60%;
+   width: 100%;
+   
+   
+}
+
+
+
+div#legend div.content2 {
+    max-width: 12em;
+    max-height: 80%;
+    overflow: auto;
+    display: block;
+
+}
+
 div.legend {
     display: flex;
     padding: .2em;
-    border: solid lightgray 1px;
-    min-height: 3.4em;
+    border: solid black 1px;
+    min-height: 3em;	
+	font-size:10px; 
+	
+    
 }
 
 div.legend span.text {
@@ -134,24 +175,118 @@ div.legend div.rect.disabled span.plus {
 }
 
 div.col {
-    border: solid lightgrey .08em;
-	 
+    border: solid lightgray .08em;
+}
+
+div.table-item {
+
+}
+
+div.table-item .content {
+    cursor: pointer;
+    border: solid white 3px;
+    margin: 1em;
+    transition-duration: 0.5s
+}
+
+div.table-item._0 .content {
+    background-color: #00beb5;
+}
+
+div.table-item._1 .content {
+    background-color: #00b25a;
+}
+
+div.table-item._2 .content {
+    background-color: #f99800;
+}
+
+div.table-item._3 .content {
+    background-color: #e81f31;
+}
+
+div.table-item .item-body {
+    padding: .4em .4em 0;
+}
+
+div.table-item .semafor {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+div.table-item .label {
+    font-weight: bold;
+    font-size: .8em;
+    color: white;
+    margin-top: .6em;
+}
+
+div.table-item .footer {
+    font-weight: bold;
+    background-color: rgba(0,0,0,.1);
+    font-size: .9em;
+    text-align: center;
+    color: white;
+    margin-top: 1em;
+}
+
+.table-item.clicked .content {
+    border-color: black;
+}
+
+div.val .val-body {
+   /* border-radius: .3em;*/
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.filtKey {
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
+div.val.enabled .val-body {
+}
+
+.col-md-2.val {
+    margin: .1em 0;
 }
 
 
 
-#dashboard {
-    width: 80%;
-    margin: 2% 2% 2% 2%;
-     
+
+.show_all {  
+    background-color: red;
+	color:black 
+}
+
+.hide_all {  
+    background-color: red;
+	color:black 
 }
 
 
-card text-center {
-    margin:1em;
-    border: 2px solid lightgrey;
-    border-radius: 3px;
- 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Document,Output,Study
+from .models import  Document,Output,Graph
 # Register your models here.
  
 
@@ -11,3 +11,8 @@ class DocumentAdmin(admin.ModelAdmin):
 @admin.register(Output)
 class OutputAdmin(admin.ModelAdmin):
     fields = ('domain','title')
+	
+	
+@admin.register(Graph)
+class GraphAdmin(admin.ModelAdmin):
+    fields = ('nom','title','req_var')

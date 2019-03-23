@@ -6,7 +6,7 @@ import pandas as pd
  
  
  
-def pop_count(df,df_raw ,flag_list): 
+def pop_count(df_raw ,flag_list): 
     ctable= ''    
    
     dff=df_raw[flag_list]

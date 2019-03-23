@@ -2,20 +2,21 @@
  {% load static %}		
  {% block content %}
  
-   <h2 class="ser-title">{{document.domain}} dataset</h2>
-          <hr class="botm-line">
-          <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
-		  {{day_list}}
-		  <br>
-		  {{trt_list}}
-          {{ctable}}
-		  
-		  
+   <h2 class="ser-title">Details of the {{document.type}} dataset {{document.domain}} for the study : {{  document.studyname }}</h2>
+         
+    <a href="#" class="btn btn-danger pull-right" onclick="self.close()">Close this window</a>
+	 <hr class="botm-line">
         {% if  dataset  %}
 		
+			<!--	  {{day_list}}
+		          <br>
+				  {{trt_list}}
+		           <br>
+                  {{ctable}}-->
+				  
 		<!--CDISC check -->
-		
-		
+		     <p>Click here for a summary of CDISC check</p>
+			 
 		    {% if  graph_list  %}
 			 <strong style="color:green">{{check_list}} </strong>		
              <p>Choose your data vizualisation . (to get the vizualisation , your dataset variable names should be CDSIC compliant (ADAM 1.0 and SDTM 3.2)).</p>
@@ -26,47 +27,40 @@
                 {% for graff in graph_list  %} 
 				
 				   {% if graff == "adsl_dash"  %} 
-		         <a href="{% url 'data_dash' document.domain graff  %}"
+		         <a href="{% url 'data_dash' doc_id graff   %}"
  target="_blank" class="btn btn-form">{{graff}}</a>
                     {% else  %}
-				 <a href="{% url 'data_visu' document.domain graff  %}"
+				 <a href="{% url 'data_visu' doc_id graff   %}"
  target="_blank" class="btn btn-form">{{graff}}</a>
                     {% endif  %} 					
+ 
+ 				   {% if graff == "adsl_dash2"  %} 
+		         <a href="{% url 'data_dash2' doc_id    %}"
+ target="_blank" class="btn btn-form">{{graff}}</a>
+
+                    {% endif  %} 
+ 
+ 
+ 
  
                 {% empty %}
                 {% endfor %} 
              
-                <a href="#" class="btn btn-danger pull-right" onclick="self.close()">Close this window</a>
+              
                 </p>
 		     
 			 
  			{% endif %} 
 	         <!-- ----------------------------------->
-	 <div class="bs-table table-responsive" data-example-id="striped-table table-responsive"> 
-   {{ dataset |safe}} </div>
-   {% else  %} 
-   <strong>This format is not recognized.</strong>
-   
-   {% endif %} 
-   
-
- </div>
- 
-<script>
-
-$(document).ready(function() {
-    $('#example').DataTable( {
-	    
-        "deferRender": true,
-        "scrollY": 500,
-        "scrollX": true,
+	<div class="bs-table table-responsive" data-example-id="striped-table table-responsive"> 
 	 
-		"lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]]
-    } );
-} );
-
+        {{ dataset |safe}} </div>
+        {% else  %} 
+        <strong>This format is not recognized.</strong>
+         {% endif %} 
+    </div>
  
-</script> 
+ 
 
  
 {% endblock %}
