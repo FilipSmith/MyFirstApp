@@ -9,7 +9,7 @@
     <section class="content-header">
 	 
 	
-      <h1>Study {{  document.study_name }} - {{ document.type }}.{{  document.domain }}
+      <h1>Study {{  document.study_name }} - {{ document.type }}.{{ document.domain }}
         <small>Overview of ADSL</small>
       </h1>
       <hr class="botm-line">
@@ -53,9 +53,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>{{ C_FLAG1 }}</h3>
 
-              <p>User Registrations</p>
+              <p>{{ FLAG1 }}</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -68,9 +68,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{ C_FLAG2 }}</h3>
 
-              <p>Unique Visitors</p>
+              <p>{{ FLAG2 }}</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -150,9 +150,82 @@
 
 
       </div>
-      <!-- / Row 2 -->
+
+	  
+	  	        <!-- / Row 2 -->
 	  
 	        <!-- Main row -->
+
+      <!-- Row 3 -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Population sample</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Site ID</th>
+                    <th>Arm</th>
+                    <th>Reference start Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+				  {% for d in listing %}
+                  <tr>
+                    <td><a href="#">{{ d.0 }}</a></td>
+                    <td>{{ d.1 }} </td>
+                    <td>{{ d.2 }}</span></td>
+                    <td>
+                      {{ d.3 }}
+                    </td>
+                  </tr><!--class="label label-success" class="label label-warning" class="label label-danger"  class="label label-info"-->
+                 {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Height - Weight - BMI</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body"> 
+              <canvas id="bubbleChart" style="height: 180px;"></canvas>
+			<!--  <canvas id="radarChart" style="height: 403px; width: 807px;" width="807" height="403"></canvas>-->
+            </div>
+            <!-- /.box-body -->
+          </div>          
+        </div>
+      </div>    
+      <!-- / Row 3 -->
+
       <div class="row">
         <div class="col-md-12">
             <div class="box">
@@ -196,20 +269,20 @@
                   </p>
 
                   <div class="progress-group">
-                    <span class="progress-text">Add Products to Cart</span>
-                    <span class="progress-number"><b>160</b>/200</span>
+                    <span class="progress-text">{{ FLAG1 }}</span>
+                    <span class="progress-number"><b>{{ C_FLAG1 }}</b>/{{ document.number_of_subj }}</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                      <div class="progress-bar progress-bar-aqua" style="width: {{ P_FLAG1 }}%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
                   <div class="progress-group">
-                    <span class="progress-text">Complete Purchase</span>
-                    <span class="progress-number"><b>310</b>/400</span>
+                    <span class="progress-text">{{ FLAG2 }}</span>
+                    <span class="progress-number"><b>{{ C_FLAG2 }}</b>/{{ document.number_of_subj }}</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                      <div class="progress-bar progress-bar-red" style="width:  {{ P_FLAG2 }}%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
@@ -285,121 +358,7 @@
 	  
 	  
 	  
-
-      <!-- Row 3 -->
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Latest Orders</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td><a href="#">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">OR7429</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-info">Processing</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      Sept. 17, 2018
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.table-responsive -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
-            </div>
-            <!-- /.box-footer -->
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">Radar Chart</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="radarChart" style="height: 403px; width: 807px;" width="807" height="403"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>          
-        </div>
-      </div>    
-      <!-- / Row 3 -->
+	  
 
     </section>
     <!-- /.content -->

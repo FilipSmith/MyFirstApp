@@ -63,14 +63,12 @@
       </div>
     </nav>
   </header>
-
-  
+ 
            {{WARN_MESSAGE}}	
 		   
            {% block content %}
            {% endblock %}
-  	
-		
+  			
  <!--/ contact-->
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -99,7 +97,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12"><strong>Copyright &copy; 2018.</strong> All rights reserved.</div>
+        <div class="col-md-12"><strong>Copyright &copy; 2019.</strong> All rights reserved.</div>
       </div>
     </div>
     
@@ -167,13 +165,9 @@
 		};
  
 	 
-	 
-	 
-
 	 //--------------
      //- New Doughnut -
      //--------------
-	 
 	 
 		var randomScalingFactor = function() {
 			return Math.round(Math.random() * 100);
@@ -198,10 +192,10 @@
 			options: {
 				responsive: true,
 				legend: {
-					position: 'top',
+					position: 'left',
 				},
 				title: {
-					display: true,
+					display: false,
 					text: ' '
 				},
 				animation: {
@@ -221,43 +215,47 @@
         }
 		
 
-const boxplotData = {
-  // define label tree
-  labels: {{ box_labels }},
-  datasets: [{
-    label: 'Male',
-    backgroundColor: 'rgba(255,0,0,0.5)',
-    borderColor: 'black',
-    borderWidth: 1,
-    outlierColor: '#999999',
-    padding: 10,
-    itemRadius: 0,
-    outlierColor: '#999999',
-    data: 
-      {{ age_m }}
-  
-    
-  }, {
-    label: 'Female',
-    backgroundColor:  'rgba(0,0,255,0.5)',
-    borderColor: 'black',
-    borderWidth: 1,
-    outlierColor: '#999999',
-    padding: 10,
-    itemRadius: 0,
-    outlierColor: '#999999',
-    data:  
-      {{ age_f }}
-  
-    
-  }]
-};
+		const boxplotData = {
+		  // define label tree
+		  labels: {{ box_labels }},
+		  datasets: [{
+ 	              label: 'Male',
+ 		          backgroundColor: 'rgba(255,0,0,0.5)',
+		          borderColor: 'black',
+                  borderWidth: 1,
+                  outlierColor: '#999999',
+                  padding: 10,
+                  itemRadius: 0,
+                  outlierColor: '#999999',
+                  data: {{ age_m }}
+                  }  , {
+                  label: 'Female',
+                  backgroundColor:  'rgba(0,0,255,0.5)',
+                  borderColor: 'black',
+                  borderWidth: 1,
+                  outlierColor: '#999999',
+                  padding: 10,
+                  itemRadius: 0,
+                  outlierColor: '#999999',
+                  data:  {{ age_f }}
+                  }]
+        };
  
-		
-		
-		
-		
 
+		//---------
+		//bubbleplot
+		//---------
+		
+		
+		var popData = {
+           datasets: [{ {{ WV.line_dict_1 }}
+                       },{ {{ WV.line_dict_2 }}
+                       }
+                      ] 
+                     };
+ 
+ 
+     //////////////////////////////////////////////////////
 		window.onload = function() {
 			var ctx = document.getElementById('pieChart').getContext('2d');
 			window.myDoughnut = new Chart(ctx, config);
@@ -272,35 +270,45 @@ const boxplotData = {
 						position: 'top',
 					},
 					title: {
-						display: true,
+						display: false ,
 						text: ''
 					}
 				}
 			});
 			
-	const ctz = document.getElementById("boxChart").getContext("2d");
-    window.myBar = new Chart(ctz, {
-                   type: 'boxplot',
-                   data: boxplotData,
-                   options: {
-                             responsive: true,
-                             legend: {
-                                      position: 'top',
-                             },
-                             title: {
-                                      display: true,
-                                      text: ' '
-                                    }
-                            }
-                   });
+	        var ctz = document.getElementById("boxChart").getContext("2d");
+            window.myBox = new Chart(ctz, {
+                type: 'boxplot',
+                data: boxplotData,
+                options: {
+                    responsive: true,
+                    legend: {
+                       position: 'top',
+                    },
+                    title: {
+                       display: false,
+                       text: ' '
+                    }
+                }
+            });
+			
+			
+			
+            var ctu = document.getElementById("bubbleChart").getContext("2d");
+          /*  Chart.defaults.global.defaultFontFamily = "Lato";
+            Chart.defaults.global.defaultFontSize = 18;*/
+			
+			
+			window.myBox = new Chart(ctu, {
+                type: 'bubble',
+                data: popData
+            });
+			
 			
 		};
 
 	 
-	 
-	 
-	 
-	 
+ 
  
 </script>    
 </body>
