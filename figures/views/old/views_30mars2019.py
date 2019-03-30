@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 
+
 # Il faut ajouter l'import get_object_or_404, attention !
 from django.shortcuts import render, get_object_or_404, redirect
 from figures.models import Study, Output, Objet, Specs, UserProfile, Comment, ListCode, Description,Document, Graph
@@ -20,9 +21,13 @@ from django.db.models import Q
 ##from figures.filters import OutputFilter     #for search bar
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+ 
 from figures.forms import DocumentForm, UploadFileForm
+
 from .data_check import data_check
 from .stat_report import pop_count
+
+
 from sas7bdat import SAS7BDAT
 
 """import le formulaire de form.py"""
@@ -36,7 +41,13 @@ import shutil
 """for import CSV"""
 
 
-     
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+
+
+    """view of a containt of a dataset"""	
 def getData(request , doc_id):
       
     doc=get_object_or_404(Document, id=doc_id)    
@@ -46,7 +57,7 @@ def getData(request , doc_id):
 	###import data to dataframe 
     df = pd.DataFrame({'A' : []})   
     df_raw = pd.DataFrame({'A' : []})  
-    ###check the format of the data and import to csv	
+	
     if test_ext == "sas7bdat" :
 	   
        with SAS7BDAT('figures/media/'+test_name+'.sas7bdat') as f:	   
@@ -65,7 +76,7 @@ def getData(request , doc_id):
        df = df.rename(columns=lambda x: x.upper()) 
        shutil.copy('figures/media/'+test_name+'.csv', 'figures/static/tmpdata/'+doc.domain+'.csv')
     else: 
-       warn_message = "Only sasdataset or xpt or csv files are accepted"		 
+       warn_message = "Only sasdataset or xpt file are accepted"		 
  	 
 
 	###list of data visualization by domain 
@@ -77,7 +88,7 @@ def getData(request , doc_id):
             graph_list = ['safetyHistogram','safetyOutlierExplorer','safetyResultsOverTime','safety-shift-plot-master' ]
         else :
             if  doc.domain == 'ADSL':
-                graph_list = ['demoPlot','adsl_dash2']   
+                graph_list = ['demoPlot','adsl_dash','adsl_dash2']   
             else :
                 if  doc.domain == 'ADPP' or  doc.domain =='ADPC':
                     graph_list = ['pk1plot','pk2plot' ]
@@ -165,10 +176,63 @@ def getData(request , doc_id):
 def data_visu(request, doc_id, graff ):
     doc=get_object_or_404(Document, id=doc_id)   
     graph_=get_object_or_404(Graph, nom=graff)  
+    ###Check data before to display the figure
+    ###result =  all(elem in graff.req_var  for elem in variables)
+    ###if result:
+    ###    warn_note="Yes, all variables are presents"     
+    ###else :
+    ###    warn_note="No, some required variables are missing" 
+        ###descriptive stats	
    
     return render(request, 'figures/data_visu.html', {  'document':doc, 'domain':doc.domain,  'graph':graph_  }) 
 		
 		
+		
+def data_dash(request, doc_id, graff  ):
+    graph_=get_object_or_404(Graph, nom=graff) 
+    doc=get_object_or_404(Document, id=doc_id)  
+ 	
+    WARN_MESSAGE=""
+	
+	###A few check for unusual naming
+    FLAG_EFF = 'EFFL'
+    FLAG_SAF = 'SAFFL'
+    flag_list_l = doc.pop_flag
+	
+	###A few check for unusual naming
+    HEIGHT_VAR = 'HEIGHT'
+    WEIGHT_VAR = 'WEIGHT'
+    BMI_VAR = 'BMI'
+    variables = doc.variables	
+		
+    if 'EFFICACY' in flag_list_l and 'EFFL' not in flag_list_l:
+        FLAG_EFF='EFFICACY'
+    if 'SAFETY' in flag_list_l and 'SAFFL' not in flag_list_l:
+        FLAG_SAF='SAFETY'
+		
+    if 'HEIGHTBL' in variables :
+        HEIGHT_VAR='HEIGHTBL'
+    if 'HTBL' in variables :
+        HEIGHT_VAR='HTBL'
+    if 'WEIGHTBL' in variables  :
+        WEIGHT_VAR='WEIGHTBL'
+    if 'WTBL' in variables  :
+        WEIGHT_VAR='WTBL'
+    if 'BMIBL' in variables :
+        BMI_VAR='BMIBL'
+	
+    if HEIGHT_VAR not in variables: 
+       WARN_MESSAGE=mark_safe(WARN_MESSAGE+"<p style='color:red'> The variable " +HEIGHT_VAR+ " is missing </p>")  
+    if WEIGHT_VAR not in variables: 
+       WARN_MESSAGE=mark_safe(WARN_MESSAGE+"<p style='color:red'> The variable " +WEIGHT_VAR+ " is missing </p>")
+
+    if doc.domain =='ADSL':
+	###CDISC ADAM
+        if  "AGE" not in variables :
+            WARN_MESSAGE=mark_safe(WARN_MESSAGE+"<p style='color:red'>AGE is required in ADSL as per CDISC rules</p>") 			   
+		
+    return render(request, 'figures/data_dash.html', { 'document':doc ,   'graph':graph_, 'variables':variables, 'HEIGHT_VAR':HEIGHT_VAR,'WEIGHT_VAR':WEIGHT_VAR, 'BMI_VAR':BMI_VAR ,'FLAG_EFF':FLAG_EFF,'FLAG_SAF':FLAG_SAF,'WARN_MESSAGE':WARN_MESSAGE })   
+
 def dataCheck(doc_id):
     doc=get_object_or_404(Document, id=doc_id)
 	
