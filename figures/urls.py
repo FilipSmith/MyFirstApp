@@ -15,6 +15,7 @@ urlpatterns = [
  ###    path('data_dash/<str:doc_id>/<str:graff>/', views.data_dash, name='data_dash'),  	
     path('data_visu/<str:doc_id>/<str:graff>/', views.data_visu, name='data_visu'), 
     path('getData/infoVar/<str:domain>/<str:var>/', views.infoVar, name='infovar'), 
+    path('patient/<str:doc_id>/<str:patid>/', views.patient, name='patient'), 
     
 ]
 

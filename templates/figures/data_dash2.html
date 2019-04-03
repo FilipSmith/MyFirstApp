@@ -178,18 +178,18 @@
                     <th>Patient ID</th>
                     <th>Site ID</th>
                     <th>Arm</th>
-                    <th>Reference start Date</th>
+                    <th>Age</th>
+					<th>Sex</th>
                   </tr>
                   </thead>
                   <tbody>
 				  {% for d in listing %}
                   <tr>
-                    <td><a href="#">{{ d.0 }}</a></td>
+                    <td><a href="{% url 'patient' document.id d.0 %}" target="_blank">{{ d.0 }}</a></td>
                     <td>{{ d.1 }} </td>
-                    <td>{{ d.2 }}</span></td>
-                    <td>
-                      {{ d.3 }}
-                    </td>
+                    <td>{{ d.2 }} </td>
+                    <td>{{ d.3 }} </td>
+					<td>{{ d.4 }} </td>
                   </tr><!--class="label label-success" class="label label-warning" class="label label-danger"  class="label label-info"-->
                  {% endfor %}
                   </tbody>
@@ -254,11 +254,13 @@
               <div class="row">
                 <div class="col-md-8">
                   <p class="text-center">
-                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                    <strong>Demographic summary</strong>
                   </p>
 
-                  <div class="chart">
-                    <canvas id="areaChart" style="height: 180px;"></canvas>
+             <div class="box-body">
+              <div class="table-responsive">
+				   {{ mytable }}
+                   </div> 
                   </div>
                   <!-- /.chart-responsive -->
                 </div>
@@ -357,15 +359,9 @@
       <!-- /.row (main row) -->
 	  
 	  
-	  
-	  
-
     </section>
     <!-- /.content -->
   </div>
- 
- 
- 
  
  
 {% endblock %}
